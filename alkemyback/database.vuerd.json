@@ -1,0 +1,116 @@
+{
+    "canvas": {
+      "version": "2.2.10",
+      "width": 2000,
+      "height": 2000,
+      "scrollTop": 0,
+      "scrollLeft": -49.20000117301946,
+      "zoomLevel": 1,
+      "show": {
+        "tableComment": true,
+        "columnComment": true,
+        "columnDataType": true,
+        "columnDefault": true,
+        "columnAutoIncrement": false,
+        "columnPrimaryKey": true,
+        "columnUnique": false,
+        "columnNotNull": true,
+        "relationship": true
+      },
+      "database": "PostgreSQL",
+      "databaseName": "sistemaa",
+      "canvasType": "@vuerd/builtin-sql-ddl",
+      "language": "GraphQL",
+      "tableCase": "pascalCase",
+      "columnCase": "camelCase",
+      "highlightTheme": "VS2015",
+      "bracketType": "none",
+      "setting": {
+        "relationshipDataTypeSync": true,
+        "relationshipOptimization": false,
+        "columnOrder": [
+          "columnName",
+          "columnDataType",
+          "columnNotNull",
+          "columnUnique",
+          "columnAutoIncrement",
+          "columnDefault",
+          "columnComment"
+        ]
+      },
+      "pluginSerializationMap": {}
+    },
+    "table": {
+      "tables": [
+        {
+          "name": "users",
+          "comment": "",
+          "columns": [
+            {
+              "name": "id_user",
+              "comment": "",
+              "dataType": "bigserial",
+              "default": "",
+              "option": {
+                "autoIncrement": false,
+                "primaryKey": true,
+                "unique": false,
+                "notNull": true
+              },
+              "ui": {
+                "active": false,
+                "pk": true,
+                "fk": false,
+                "pfk": false,
+                "widthName": 60,
+                "widthComment": 60,
+                "widthDataType": 60,
+                "widthDefault": 60
+              },
+              "id": "4ed9e866-1f10-45f4-b920-d12cee0dd16d"
+            },
+            {
+              "name": "fullname",
+              "comment": "",
+              "dataType": "varchar",
+              "default": "",
+              "option": {
+                "autoIncrement": false,
+                "primaryKey": false,
+                "unique": false,
+                "notNull": true
+              },
+              "ui": {
+                "active": false,
+                "pk": false,
+                "fk": false,
+                "pfk": false,
+                "widthName": 60,
+                "widthComment": 60,
+                "widthDataType": 60,
+                "widthDefault": 60
+              },
+              "id": "a7c159b3-86de-4907-aeb4-9b20922d8b00"
+            }
+          ],
+          "ui": {
+            "active": false,
+            "left": 72.8,
+            "top": 30.4,
+            "zIndex": 64,
+            "widthName": 60,
+            "widthComment": 60
+          },
+          "visible": true,
+          "id": "b3feb9c9-b722-48e6-bed2-92ec51968c19"
+        }
+      ],
+      "indexes": []
+    },
+    "memo": {
+      "memos": []
+    },
+    "relationship": {
+      "relationships": []
+    }
+  }
