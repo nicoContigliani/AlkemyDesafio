@@ -45,11 +45,11 @@ const RegisterPost = async (newUsers) => {
     return user
 }
 
-
+////
 const getBudget = async (id_user) => {
     console.log(id_user)
     try {
-        const response = await pool.query(' select * from budgets b where id_user=',id_user);
+        const response = await pool.query('SELECT *  FROM public.budgets WHERE id_user =' + id_user);
         user = response.rows
         return user
     } catch (error) {
