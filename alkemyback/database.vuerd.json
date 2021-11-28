@@ -3,8 +3,8 @@
     "version": "2.2.10",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -16.800000400543222,
-    "scrollLeft": -48.00000114440922,
+    "scrollTop": -19.200000457763682,
+    "scrollLeft": -44.400001058578525,
     "zoomLevel": 1,
     "show": {
       "tableComment": true,
@@ -97,7 +97,7 @@
           "active": false,
           "left": 135.2,
           "top": 92.8,
-          "zIndex": 120,
+          "zIndex": 1,
           "widthName": 60,
           "widthComment": 60,
           "color": "#0031FF"
@@ -249,10 +249,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 805.1913,
           "top": 54.4,
-          "zIndex": 139,
+          "zIndex": 2,
           "widthName": 60,
           "widthComment": 60,
           "color": "#E90000"
@@ -270,7 +270,7 @@
     "relationships": [
       {
         "identification": false,
-        "relationshipType": "OneOnly",
+        "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "b3feb9c9-b722-48e6-bed2-92ec51968c19",

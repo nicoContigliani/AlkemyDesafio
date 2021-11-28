@@ -4,9 +4,22 @@ const bcrypt = require('bcrypt')
 
 
 const getBudget = async (id_user) => {
-   const budget = await budgetDao.getBudget(id_user)
-  // return budget
+  const budget = await budgetDao.getBudget(id_user)
+  return budget
 }
+
+const saveBudget = async (resource) => {
+  const budget = await budgetDao.saveBudget(resource)
+  return budget
+}
+const deleteBudget = async(id_budget)=>{
+  const budget = await budgetDao.deleteBudget(id_budget)
+  return budget
+}
+
+
 module.exports = {
-  getBudget
+  getBudget,
+  saveBudget,
+  deleteBudget
 }

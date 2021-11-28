@@ -8,7 +8,7 @@ const single = (resource, authUser) => (
 const singles = async (resource) => {
 
   const rest = await resource.map((item) => {
-    delete item.password
+
     return item
   }
   )

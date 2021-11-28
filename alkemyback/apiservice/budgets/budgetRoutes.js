@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 
- const budgets = require('./budgetController');
+const budgets = require('./budgetController');
 
 
- router.get('/:id', budgets.get);
-// //  router.get('/sigin', user.sigin);
-//  router.post('/register', user.register);
-//  router.post('/login', user.login);
+router.get('/:id', budgets.get);
+router.post('/', budgets.save);
+router.delete('/:id', budgets.deletes);
+
+
 
 
 
@@ -20,4 +21,4 @@ const router = express.Router();
 
 
 
-module.exports= router;
+module.exports = router;

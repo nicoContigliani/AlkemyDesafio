@@ -21,33 +21,25 @@ const bcrypt = require('bcrypt')
 //     res.send("hola")
 
 // }
-const getUser = async (req, res) => {
-    const response = await pool.query('SELECT * FROM public.users;');
-    const users = response.rows;
-    return users
-};
 
-const registerGet = async (req, res) => {
-    const response = await pool.query('SELECT * FROM public.users ORDER BY id_user ASC');
-    user = response.rows
-    return user
-}
-const RegisterPost = async (newUsers) => {
-    const password = newUsers.hashedPassword;
-    const fullname = newUsers.fullname;
-    try {
-        const response = await pool.query('INSERT INTO public.users (fullname, password) VALUES ($1, $2)', [fullname, password]);
-        return user
-    } catch (error) {
-        console.log(error)
-
-    }
-    return user
-}
 
 ////
+
+// const getBudgets = async () => {
+//     // console.log(id_user)
+//     try {
+//         const response = await pool.query('SELECT *  FROM public.budgets ');
+//         user = response.rows
+//         return user
+//     } catch (error) {
+//         console.log(error)
+
+//     }
+// }
+
+
 const getBudget = async (id_user) => {
-    console.log(id_user)
+    // console.log(id_user)
     try {
         const response = await pool.query('SELECT *  FROM public.budgets WHERE id_user =' + id_user);
         user = response.rows
@@ -58,11 +50,40 @@ const getBudget = async (id_user) => {
     }
 }
 
+const saveBudget = async (resource) => {
+    const { concept, amount, date, id_user, type } = resource;
+    try {
+        const response = await pool.query('INSERT INTO public.budgets (concept, amount, "date", id_user, "type") VALUES ($1,$2,$3,$4,$5)', [concept, amount, date, id_user, type]);
+        budgets = response
+        return budgets
+    } catch (error) {
+        console.log(error)
+
+    }
+}
+
+
+
+
+const deleteBudget = async (id_budget) => {
+    try {
+        const response = await pool.query('DELETE FROM public.budgets WHERE id_budget = $1', [
+            id_budget
+        ]);
+        budgets = response.rows
+        return budgets
+    } catch (error) {
+        console.log(error)
+
+    }
+}
+
+
 
 
 module.exports = {
-    RegisterPost,
-    registerGet,
-    getUser,
-    getBudget
+    // getBudgets,
+    getBudget,
+    saveBudget,
+    deleteBudget
 }
