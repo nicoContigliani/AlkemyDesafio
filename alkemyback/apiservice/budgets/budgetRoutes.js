@@ -8,6 +8,8 @@ const budgets = require('./budgetController');
 router.get('/:id', budgets.get);
 router.post('/', budgets.save);
 router.delete('/:id', budgets.deletes);
+router.post('/:id', budgets.update);
+
 
 
 

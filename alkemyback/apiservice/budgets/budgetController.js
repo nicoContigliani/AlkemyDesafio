@@ -38,11 +38,22 @@ const deletes = async (req, res) => {
      const budgetRow = await budgetDto.singles(budget)
      res.status(200).json(budgetRow);
 }
+const update = async (req, res) => {
+    const id_budget = parseInt(req.params.id);
+    const id_user = parseInt(req.body.id_user);
+    const element = req.body;
+    const everything = {...element,id_budget}
+    const budgets = await budgetModel.updateBudget(everything);
+    const budget = await budgetModel.getBudget(id_user);
+    const budgetRow = await budgetDto.singles(budget)
+    res.status(200).json(budgetRow);
+}
 
 
 module.exports = {
 
     get,
     save,
-    deletes
+    deletes,
+    update
 }

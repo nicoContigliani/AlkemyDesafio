@@ -16,10 +16,16 @@ const deleteBudget = async(id_budget)=>{
   const budget = await budgetDao.deleteBudget(id_budget)
   return budget
 }
+const updateBudget = async(everything)=>{
+  const budget = await budgetDao.updateBudget(everything)
+  return budget
+}
+
 
 
 module.exports = {
   getBudget,
   saveBudget,
-  deleteBudget
+  deleteBudget,
+  updateBudget
 }
