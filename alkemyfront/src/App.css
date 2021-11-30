@@ -17,7 +17,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -28,7 +28,7 @@
   color: #61dafb;
 }
 
-
+/* 
 .presentation {
   background-color: #282c34;
   min-height: 100vh;
@@ -38,12 +38,12 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding-left: 10%;
+  padding-left: 30%;
 
-}
+} */
 
 .credential {
-  background-color: #282c34;
+    background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -51,19 +51,189 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding-left: 10%;
+  padding-left: 0%;
 
 }
-.box{
-  background-color: rgba(112, 172, 255, 0.158);
-  flex-direction: column;
+
+
+
+.card{
+  background-color:  rgba(32, 36, 252, 0.192);
+}
+
+/* .box{
+  background-image: url('http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png') ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  background-color: rgba(32, 146, 252, 0.199);
+  flex-direction: center;
   align-items: center;
   justify-content: center;
+
+} */
+.center{
+  align-items: center;
+
+}
+
+
+@media only screen and (min-width: 601px) {
+  .presentation {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding-left: 30%;
+  
+  }
+  .box{
+    background-image: url('http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png') ;
+    /* background-size: 100% 100%; */
+    background-size: 90% 50%;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;
+
+    background-color: rgba(73, 182, 255, 0.158);
+    flex-direction: center;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5%;
+    width: 30%;
+    height: 30%; 
+  
+  }
+  .login {
+    background-color: #0044ff6e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding-left: 0%;
+    border-radius: 5%;
+   
+
+  
+  }
+  h1 { font-size: 300% }
+
+  .date-center{
+    
+    padding:1px 1px px 1px ;
+
+    background-image: url('http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png') ;
+    /* background-size: 100% 100%; */
+    background-size: 40% 55%;
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+
+    background-color: #0011ff67;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    width: 95%;
+    height: 90%; 
+    border-radius: 5%;
+    border-style: groove;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #2e3bf873;
+  }
 }
 
 
 
+@media only screen and (max-width: 600px) {
 
+  .presentation {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding-left: 10%;
+  
+  }
+  .login {
+    background-color: #0044ff6e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    
+    color: white;
+    padding: 2% 2%;
+    border-radius: 5%;
+    /* width: 100%;
+    height: 400px; */
+  
+  }
+  .box{
+    background-image: url('http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png') ;
+     background-size: 100% 40%;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+  
+    background-color: rgba(73, 182, 255, 0.158);
+    flex-direction: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5%;
+    width: 80%;
+    height: 80%; 
+  
+  
+  }
+  h1 { font-size: 300% }
+  .date-center{
+    padding:1px 1px 1px 1px ;
+
+    background-image: url('http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png') ;
+    background-size: 80% 40%;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+  
+
+
+    background-color: #1c2bff9f;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    width: 95%;
+    height: 90%; 
+    border-radius: 5%;
+    border-style: groove;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #2e3bf873;
+
+
+  }
+}
 
 
 @keyframes App-logo-spin {

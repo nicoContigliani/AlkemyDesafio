@@ -8,16 +8,18 @@ const register = async (elemento) => {
   const users = []
   const userss = await usersDao.registerGet()
   const fullname = elemento.fullname;
+  const email = elemento.email;
   const password = elemento.password;
 
-  const resultados = userss.filter(u => u.fullname === fullname)
+  const resultados = userss.filter(u => u.email === email)
   if (resultados.length >= 1) {
 
   } else {
     const hashedPassword = await bcrypt.hash(password, 10)
-    const newUser = { fullname, hashedPassword }
+    const newUser = { email,fullname, hashedPassword }
     const saveRegister = await usersDao.RegisterPost(newUser)
-    const u = await usersDao.getUser()
+    const data = {email,fullname}
+    const u = await usersDao.getUserR(data)
     users.push(u)
   }
 

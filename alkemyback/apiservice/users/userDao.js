@@ -3,40 +3,32 @@ const bcrypt = require('bcrypt')
 
 
 
-// const getUser = async (req, res) => {
-//     // const response = await pool.query('SELECT id_user, fullname FROM public.users;');
-//     // try {
-
-//     //     console.log("paso por dao")
-//     //     // console.log(response.rows)
-//     // } catch (error) {
-//     //     console.log(error)
-
-//     // }
-
-//     // res.status(200).json(response.rows);
-//     // res.json(response.rows)
-//     // res.send("algo")
-//     // console.log(response.rows)
-//     res.send("hola")
-
-// }
-const getUser = async (req, res) => {
+const getUser = async () => {
+    
     const response = await pool.query('SELECT * FROM public.users;');
     const users = response.rows;
     return users
 };
+const getUserR = async (data) => {
 
-const registerGet = async (req, res) => {
-    const response = await pool.query('SELECT * FROM public.users ORDER BY id_user ASC');
+   const {email,fullname}=data;
+    const response = await pool.query("SELECT * FROM public.users where email ='" + email+"'");
+    const users = response.rows;
+
+     return users
+};
+
+const registerGet = async (data) => {
+    const response = await pool.query('SELECT * FROM public.users;');
     user = response.rows
     return user
 }
 const RegisterPost = async (newUsers) => {
     const password = newUsers.hashedPassword;
     const fullname = newUsers.fullname;
+    const email = newUsers.email;
     try {
-        const response = await pool.query('INSERT INTO public.users (fullname, password) VALUES ($1, $2)', [fullname, password]);
+        const response = await pool.query('INSERT INTO public.users (fullname, password,email) VALUES ($1, $2,$3)', [fullname, password,email]);
         return user
     } catch (error) {
         console.log(error)
@@ -46,12 +38,9 @@ const RegisterPost = async (newUsers) => {
 }
 
 
-
-
-
-
 module.exports = {
     RegisterPost,
     registerGet,
+    getUserR,
     getUser
 }

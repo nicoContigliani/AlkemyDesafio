@@ -10,9 +10,6 @@ const router = express.Router();
  router.post('/register', user.register);
  router.post('/login', user.login);
 
-
-
-
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('rutausuario');

@@ -1,24 +1,7 @@
 const userModel = require('./userModel')
 const userDto = require('./userDto');
 
-
-
-
 const bcrypt = require('bcrypt')
-
-
-
-// module.exports = {
-//     async get(req, res) {
-//         const user = await userModel.getUser(req.params.id);
-//         if (!user) return res.sendStatus(404);
-//         return res.send("llega"
-//             // userDto.single(user, req.user)
-//                 );
-//     }
-
-// };
-
 
 const login = async (req, res) => {
     const userCreate = req.body
@@ -29,7 +12,7 @@ const login = async (req, res) => {
 
 
 const register = async (req, res) => {
-    const { id_user, fullname, password } = req.body
+    const { fullname, password,email } = req.body
     const userCreate = req.body
     const user = await userModel.register(userCreate);
     const userRow = await userDto.register(user)

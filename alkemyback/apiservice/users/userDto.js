@@ -18,20 +18,18 @@ const singles = async (resource) => {
 
 
 const register = async (resource) => {
-
   const data = resource[0]
+
   const rest = await data.map((item) => {
     delete item.password
     return item
   }
   )
-
   return rest
 }
 
 
 const login = async (resource) => {
-
   const data = resource[0]
   const rest = await data.map((item) => {
     delete item.password
@@ -41,8 +39,6 @@ const login = async (resource) => {
 
   return rest
 }
-
-
 
 module.exports = {
   single,
