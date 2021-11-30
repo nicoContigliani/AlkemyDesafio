@@ -18,14 +18,15 @@ const singles = async (resource) => {
 
 
 const register = async (resource) => {
-  const data = resource[0]
-
+  console.log(resource)
+const data = resource[0]
   const rest = await data.map((item) => {
     delete item.password
     return item
   }
   )
-  return rest
+
+   return rest
 }
 
 
