@@ -3,7 +3,7 @@ import React from 'react'
 const Register = () => {
     return (
         <div className="App">
-              <h1 className="App">Register</h1>
+           
             <div className="container">
                 <div class="input-group">
 
@@ -15,7 +15,7 @@ const Register = () => {
                     <input type="password" class="form-control" placeholder="pasword" name="password"/>
                     <input type="password" class="form-control" placeholder="repeat password" name="password" />
                 </div>
-                <div className="center"><br />
+                <div className="center">
                     <div className="btn btn-secondary">Register</div>
                 </div>
             </div>

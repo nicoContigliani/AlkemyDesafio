@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useContext, useState } from 'react'
+import axios, { useEffect } from 'axios'
+
+import { AuthContext } from '../../contexts/AuthProvider'
+
+
 
 const Login = () => {
+    const { people, UserChange } = useContext(AuthContext)
 
     const [user, setUser] = useState("")
+
+
+
+
+
 
     const onchangeUserData = (e) => {
         setUser({
@@ -16,7 +26,7 @@ const Login = () => {
 
     const insertLog = async (e) => {
         e.preventDefault()
-        console.log({ ...user });
+        // console.log({ ...user });
 
         const n = await axios({
             url: 'http://localhost:3001/api/users/login',
@@ -26,9 +36,19 @@ const Login = () => {
             data: { ...user },
             success: function (response) {
                 console.log(response);
+                // localStorage.setItem('userSession', JSON.stringify(response))
+
             }
         });
-        console.log(n.data[0]);
+        const id_user = parseInt(n.data[0].id_user);
+        if (id_user === 0) {
+            // console.log("no");
+        } else {
+            UserChange(n.data[0])
+            window.location.reload();
+
+        }
+
     }
 
     return (

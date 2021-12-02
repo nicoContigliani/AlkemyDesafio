@@ -59,7 +59,7 @@ const login = async (elemento) => {
     
     users.push([[
       {
-        "id_user": "0",
+        "id_user": 0,
         "email": "not user"
       }
     ]])

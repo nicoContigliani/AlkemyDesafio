@@ -65,7 +65,6 @@ const Credential = () => {
                         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"  centered>
                             <Tab label="Login" {...a11yProps(0)} />
                             <Tab label="Register" {...a11yProps(1)} />
-                            {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
                         </Tabs>
                     </Box>
                     <TabPanel value={value} index={0}>
@@ -78,9 +77,7 @@ const Credential = () => {
 
                         <Register />
                     </TabPanel>
-                    {/* <TabPanel value={value} index={2}>
-                    Item Three
-                </TabPanel> */}
+               
                 </Box>
             </div>
         </div>
