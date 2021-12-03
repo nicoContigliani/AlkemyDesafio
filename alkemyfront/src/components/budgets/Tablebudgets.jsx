@@ -86,6 +86,15 @@ const Tablebudgets = () => {
 
                 </tbody>
             </table>
+
+
+
+
+
+
+
+
+            
         </div>
     )
 }

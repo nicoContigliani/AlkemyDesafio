@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Login from '../logs/Login'
 import Register from '../registers/Register'
-import Tablebudgest from '../budgets/Tablebudgets'
+import Mainbudget from '../budgets/Mainbudget'
 import AuthProvider from '../../contexts/AuthProvider'
 
 import PropTypes from 'prop-types';
@@ -10,6 +10,9 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+import { Button, Navbar, Container, Nav, Offcanvas, NavDropdown, Form, FormControl } from 'react-bootstrap';
+
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -17,6 +20,7 @@ import {
     Link,
     NavLink
 } from "react-router-dom";
+import Createbudget from '../budgets/Createbudget'
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -102,34 +106,107 @@ const Main = (prop) => {
                 log ? (
                     <div>
 
+                        <br />
+
+
+
+
+
+
+
+
 
 
                         <AuthProvider>
                             <Router>
                                 <div className="container mt-5">
                                     <div className="btn-group">
+                                        <Navbar bg="light" expand={false}>
+                                            <Container fluid>
+                                                <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                                                <Navbar.Brand href="#">Alkemy</Navbar.Brand>
+                                                <Navbar.Offcanvas
+                                                    id="offcanvasNavbar"
+                                                    aria-labelledby="offcanvasNavbarLabel"
+                                                    placement="end"
+                                                >
+                                                    <Offcanvas.Header closeButton>
+                                                        {/* <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title> */}
+                                                    </Offcanvas.Header>
+                                                    <Offcanvas.Body>
+                                                        <Nav className="justify-content-end flex-grow-1 pe-3">
+                                                            <div className="d-grid gap-2">
+                                                                <Link to="/" className="btn btn-outline-secondary">Main</Link>
+                                                                <Link to="/createbudget" className="btn btn-outline-secondary">Create </Link>
+
+                                                                <Link to="/createbudget" className="btn btn-outline-danger">Create </Link>
+
+                                                                
+
+                                                     
+                                                            </div>
+
+                                                        </Nav>
+                                                        <hr />
+                                                        <hr />
+
+                                                        {/* <Form className="d-flex">
+                                                            <FormControl
+                                                                type="search"
+                                                                placeholder="Search"
+                                                                className="me-2"
+                                                                aria-label="Search"
+                                                            />
+                                                            <Button variant="outline-success">Search</Button>
+                                                        </Form> */}
+
+
+                                                    </Offcanvas.Body>
+                                                </Navbar.Offcanvas>
+                                            </Container>
+                                        </Navbar>
+
+                                        {/* 
                                         <Link to="/" className="btn btn-dark">Table</Link>
+
+                                        <Link to="/" className="btn btn-dark">Table</Link>
+
+                                        <Link to="/" className="btn btn-dark">Table</Link>
+
+                                        <Link to="/" className="btn btn-dark">Table</Link>
+
+                                        <Link to="/" className="btn btn-dark">Table</Link>
+
+                                        <Link to="/" className="btn btn-dark">Table</Link> */}
+
                                         {/* <Link to="/bla" className="btn btn-dark">Bla bla bla</Link>
                                     <NavLink to="/users" className="btn btn-dark" activeClassName="active">Users</NavLink> */}
                                     </div>
                                     <hr />
                                     <Switch>
                                         <Route path="/" exact>
-                                            <Tablebudgest />
+                                            <Mainbudget />
                                         </Route>
-                                        <Route path="/bla">
-                                            <Tablebudgest />
+                                        <Route path="/createbudget">
+                                            <Createbudget />
                                         </Route>
                                         <Route path="/users/:id" exact>
-                                            <Tablebudgest />
+                                            <Mainbudget />
                                         </Route>
                                         <Route path="/users">
-                                            <Tablebudgest />
+                                            <Mainbudget />
                                         </Route>
                                     </Switch>
                                 </div>
                             </Router>
                         </AuthProvider>
+
+
+
+
+
+
+
 
 
 

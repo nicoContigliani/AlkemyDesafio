@@ -4,7 +4,7 @@
     "width": 2000,
     "height": 2000,
     "scrollTop": -19.200000457763682,
-    "scrollLeft": -43.400001058578525,
+    "scrollLeft": -44.400001058578525,
     "zoomLevel": 1,
     "show": {
       "tableComment": true,
@@ -19,7 +19,7 @@
     },
     "database": "PostgreSQL",
     "databaseName": "sistemaa",
-    "canvasType": "@vuerd/builtin-sql-ddl",
+    "canvasType": "ERD",
     "language": "GraphQL",
     "tableCase": "pascalCase",
     "columnCase": "camelCase",
@@ -143,7 +143,7 @@
           "active": false,
           "left": 135.2,
           "top": 93.8,
-          "zIndex": 31,
+          "zIndex": 2,
           "widthName": 60,
           "widthComment": 60,
           "color": "#0031FF"
@@ -298,7 +298,7 @@
           "active": false,
           "left": 805.1913,
           "top": 54.4,
-          "zIndex": 2,
+          "zIndex": 1,
           "widthName": 60,
           "widthComment": 60,
           "color": "#E90000"

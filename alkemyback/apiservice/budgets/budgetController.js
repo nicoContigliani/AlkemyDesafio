@@ -6,14 +6,13 @@ const budgetDto = require('./budgetDto')
 
 
 const get = async (req, res) => {
-
-
     const id_user = parseInt(req.params.id);
     const budget = await budgetModel.getBudget(id_user);
     const budgetRow = await budgetDto.singles(budget)
     res.status(200).json(budgetRow);
 
 }
+
 
 
 const save = async (req, res) => {
@@ -26,23 +25,19 @@ const save = async (req, res) => {
 
 }
 
-
-
-
-
 const deletes = async (req, res) => {
     const id_budget = parseInt(req.params.id);
     const id_user = req.body.id_user
     const budgets = await budgetModel.deleteBudget(id_budget);
     const budget = await budgetModel.getBudget(id_user);
-     const budgetRow = await budgetDto.singles(budget)
-     res.status(200).json(budgetRow);
+    const budgetRow = await budgetDto.singles(budget)
+    res.status(200).json(budgetRow);
 }
 const update = async (req, res) => {
     const id_budget = parseInt(req.params.id);
     const id_user = parseInt(req.body.id_user);
     const element = req.body;
-    const everything = {...element,id_budget}
+    const everything = { ...element, id_budget }
     const budgets = await budgetModel.updateBudget(everything);
     const budget = await budgetModel.getBudget(id_user);
     const budgetRow = await budgetDto.singles(budget)
@@ -51,7 +46,6 @@ const update = async (req, res) => {
 
 
 module.exports = {
-
     get,
     save,
     deletes,

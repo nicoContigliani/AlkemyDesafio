@@ -17,7 +17,7 @@ router.post('/:id', budgets.update);
 
 
 // /* GET bugdes listing. */
-// router.get('/', function(req, res, next) {
+// router.get('/arbol', function(req, res, next) {
 //   res.send('no se inunda másssss');
 // });
 
