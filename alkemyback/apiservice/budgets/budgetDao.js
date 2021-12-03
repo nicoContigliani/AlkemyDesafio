@@ -17,17 +17,7 @@ const getBudget = async (id_user) => {
     }
 }
 
-const getBudgetTen = async (id_user) => {
-    // console.log(id_user)
-    try {
-        const response = await pool.query('SELECT *  FROM public.budgets WHERE id_user =' + id_user+' ORDER BY id_budget desc limit 10;');
-        user = response.rows
-        return user
-    } catch (error) {
-        console.log(error)
 
-    }
-}
 
 
 
@@ -84,6 +74,5 @@ module.exports = {
     saveBudget,
     deleteBudget,
     updateBudget,
-    getBudgetTen,
 
 }

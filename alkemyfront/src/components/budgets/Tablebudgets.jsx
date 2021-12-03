@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthProvider'
 
 import Table from '@mui/material/Table';
@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -27,7 +28,20 @@ const rows = [
 
 const Tablebudgets = () => {
     const { people, UserChange } = useContext(AuthContext)
+    const [data, setData] = useState([])
+    const [dataTable, setDataTable] = useState([])
 
+
+
+    useEffect(() => {
+        if (localStorage.getItem('userSession')) {
+            const userSession = JSON.parse(localStorage.getItem('userSession'))
+            setData(userSession)
+        }
+        getEveryThing()
+    }, [])
+
+    // console.log(data, "toma por miron")
 
     const logout = () => {
         UserChange({
@@ -41,6 +55,49 @@ const Tablebudgets = () => {
     }
 
 
+
+    const getEveryThing = async () => {
+
+
+
+
+
+        // console.log({ ...user });
+        const id_user = 3;
+        const n = await axios({
+            url: `http://localhost:3001/api/budgets/${id_user}`,
+            method: 'GET',
+            contentType: 'application/json',
+
+
+            success: function (response) {
+                console.log(response);
+                // localStorage.setItem('userSession', JSON.stringify(response))
+
+            }
+        });
+        // console.log(n.data[0])
+        const element = n.data
+        setDataTable(element)
+
+    }
+
+
+    // console.log(dataTable, "table");
+
+
+
+    // amount: "285"
+    // concept: "meet eag"
+    // date: "2021-11-27T03:00:00.000Z"
+    // id_budget: 7
+    // id_user: "3"
+    // type: "egress"
+
+
+
+
+
     return (
         <div>
 
@@ -50,39 +107,50 @@ const Tablebudgets = () => {
             <table class="table table-border cell-border subcompact striped">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                        <th>Username</th>
-
+                        <th>concept</th>
+                        <th>amount</th>
+                        <th>data</th>
+                        <th>type</th>
+                        <th>action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Bill</td>
-                        <td>Gates</td>
-                        <td>@billy</td>
-                        <td>@billy</td>
+                    {
 
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Steve</td>
-                        <td>Jobs</td>
-                        <td>@stevy</td>
-                        <td>@billy</td>
+                        dataTable
 
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Larry</td>
-                        <td>Page</td>
-                        <td>@larry</td>
-                        <td>@billy</td>
+                            .map((item, index) =>
 
-                    </tr>
+
+
+                                <tr key={index}>
+
+                                    {/* <th scope="row"
+                                        onClick={(() => filtrarr(item.id_policys))}
+                                    >{item.id_policys}
+
+                                        <SearchIcon type="button" onClick={handleClickOpen} />
+                                    </th> */}
+
+                                    <td>{item.concept}</td>
+                                    <td>{item.amount}</td>
+                                    <td>{item.date}</td>
+                                    <td>{item.type}</td>
+                                  
+
+                                    <td>
+                                    
+                                                <button className="btn-primary btn-sm" 
+                                                // onClick={(() => paraEditar(item.id_policys))}
+                                                >Editar</button>
+                                      
+
+                                    </td>
+                                </tr>
+                            )
+                    }
+
+
 
                 </tbody>
             </table>
@@ -94,7 +162,7 @@ const Tablebudgets = () => {
 
 
 
-            
+
         </div>
     )
 }
