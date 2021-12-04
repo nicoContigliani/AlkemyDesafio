@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
+import Chart from 'chart.js/auto';
 
 
 
@@ -61,7 +61,7 @@ const Resulting = () => {
         // } else {
         //     console.log(total);
         // }
-        const resultantt = dataGet.filter(item => item.type === "income")
+        const resultantt = dataGet.filter(item => item.type === "entry")
         const rrData = resultantt.map(item => parseInt(item.amount))
         let totall = rrData.reduce((a, b) => a + b, 0);
 
@@ -102,12 +102,13 @@ const Resulting = () => {
 
     return (
 
-        <div>
+        <div className="App">
 
 
             
             <br />
             egreess:{resultante.total}
+
             <hr />
             income: {resultante.totall}
             <hr />

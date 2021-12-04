@@ -83,18 +83,6 @@ const Tablebudgets = () => {
     }
 
 
-    // console.log(dataTable, "table");
-
-
-
-    // amount: "285"
-    // concept: "meet eag"
-    // date: "2021-11-27T03:00:00.000Z"
-    // id_budget: 7
-    // id_user: "3"
-    // type: "egress"
-
-
 
 
 
@@ -102,7 +90,7 @@ const Tablebudgets = () => {
         <div>
 
 
-            <button type="submit" onClick={() => logout()} className="btn btn-primary">salir</button>
+            <button type="submit" onClick={() => logout()} className="btn btn-primary center">LogOut</button>
 
             <table class="table table-border cell-border subcompact striped">
                 <thead>
@@ -125,25 +113,20 @@ const Tablebudgets = () => {
 
                                 <tr key={index}>
 
-                                    {/* <th scope="row"
-                                        onClick={(() => filtrarr(item.id_policys))}
-                                    >{item.id_policys}
 
-                                        <SearchIcon type="button" onClick={handleClickOpen} />
-                                    </th> */}
 
                                     <td>{item.concept}</td>
                                     <td>{item.amount}</td>
                                     <td>{item.date}</td>
                                     <td>{item.type}</td>
-                                  
+
 
                                     <td>
-                                    
-                                                <button className="btn-primary btn-sm" 
-                                                // onClick={(() => paraEditar(item.id_policys))}
-                                                >Editar</button>
-                                      
+
+                                        <button className="btn-primary btn-sm"
+                                        // onClick={(() => paraEditar(item.id_policys))}
+                                        >Editar</button>
+
 
                                     </td>
                                 </tr>

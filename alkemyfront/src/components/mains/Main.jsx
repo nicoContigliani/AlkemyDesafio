@@ -121,10 +121,10 @@ const Main = (prop) => {
                             <Router>
                                 <div className="container mt-5">
                                     <div className="btn-group">
-                                        <Navbar bg="light" expand={false}>
+                                        <Navbar bg="outline-light" expand={false}>
                                             <Container fluid>
                                                 <Navbar.Toggle aria-controls="offcanvasNavbar" />
-                                                <Navbar.Brand href="#">Alkemy</Navbar.Brand>
+                                                <Navbar.Brand href="#">   <h2 className="ml-5">Alkemy</h2> </Navbar.Brand>
                                                 <Navbar.Offcanvas
                                                     id="offcanvasNavbar"
                                                     aria-labelledby="offcanvasNavbarLabel"
@@ -133,13 +133,13 @@ const Main = (prop) => {
                                                     <Offcanvas.Header closeButton>
                                                         {/* <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title> */}
                                                     </Offcanvas.Header>
-                                                    <Offcanvas.Body>
-                                                        <Nav className="justify-content-end flex-grow-1 pe-3">
+                                                    <Offcanvas.Body className="slate">
+                                                        <Nav className="justify-content-end flex-grow-1 pe-3 ">
                                                             <div className="d-grid gap-2">
                                                                 <Link to="/" className="btn btn-outline-secondary">Main</Link>
                                                                 <Link to="/createbudget" className="btn btn-outline-secondary">Create </Link>
 
-                                                                <Link to="/createbudget" className="btn btn-outline-danger">Create </Link>
+                                                                {/* <Link to="/createbudget" className="btn btn-outline-danger">Create </Link> */}
 
                                                                 
 
@@ -166,21 +166,7 @@ const Main = (prop) => {
                                             </Container>
                                         </Navbar>
 
-                                        {/* 
-                                        <Link to="/" className="btn btn-dark">Table</Link>
-
-                                        <Link to="/" className="btn btn-dark">Table</Link>
-
-                                        <Link to="/" className="btn btn-dark">Table</Link>
-
-                                        <Link to="/" className="btn btn-dark">Table</Link>
-
-                                        <Link to="/" className="btn btn-dark">Table</Link>
-
-                                        <Link to="/" className="btn btn-dark">Table</Link> */}
-
-                                        {/* <Link to="/bla" className="btn btn-dark">Bla bla bla</Link>
-                                    <NavLink to="/users" className="btn btn-dark" activeClassName="active">Users</NavLink> */}
+                                  
                                     </div>
                                     <hr />
                                     <Switch>

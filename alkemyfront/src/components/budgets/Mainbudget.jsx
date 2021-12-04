@@ -16,8 +16,8 @@ const Mainbudgets = () => {
 
 
     return (
-        <div>
-            <h1>Main</h1>
+        <div id="mainbudget">
+            <h1 className="App">Main</h1>
 
 
             <Resulting  />
