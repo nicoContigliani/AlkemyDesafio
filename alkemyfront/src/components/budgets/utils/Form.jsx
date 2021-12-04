@@ -69,6 +69,8 @@ const Form = (props) => {
         history.push("/");
     }
 
+    console.log(props)
+
     return (
         <div id="mainbudget">
 

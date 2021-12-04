@@ -53,14 +53,9 @@ const Resulting = () => {
     const resultant = async () => {
         const resultantes = dataGet.filter(item => item.type === "egress")
         const rData = resultantes.map(item => parseInt(item.amount))
-
         let total = rData.reduce((a, b) => a + b, 0);
 
-        // if (total === 0) {
-        //     // console.log("");
-        // } else {
-        //     console.log(total);
-        // }
+      
         const resultantt = dataGet.filter(item => item.type === "entry")
         const rrData = resultantt.map(item => parseInt(item.amount))
         let totall = rrData.reduce((a, b) => a + b, 0);
@@ -69,26 +64,6 @@ const Resulting = () => {
         const r = totall - total
 
 
-        // const x = rData.reduce(myFunc);
-
-        // function myFunc(total, num) {
-        //     return total + num;
-        // }
-
-        // const resul = dataGet.filter(item => item.type === "income")
-        // // console.log(resul, "income")
-        // const riData = resul.map(item => parseInt(item.amount))
-        // const xi = riData.reduce(myFuncc);
-
-        // function myFuncc(t, n) {
-        //     return t + n;
-        // }
-
-
-        // setResultante({
-        //     ...resultante,
-        //     x, xi, res
-        // })
         setResultante({
             total,
             totall,
@@ -104,15 +79,17 @@ const Resulting = () => {
 
         <div className="App">
 
+            <div className="center">
+                <br />
+                egreess:{resultante.total}
 
-            
-            <br />
-            egreess:{resultante.total}
+                <hr />
+                income: {resultante.totall}
+                <hr />
+                Resultante:{resultante.r}
 
-            <hr />
-            income: {resultante.totall}
-            <hr />
-            Resultante:{resultante.r}
+            </div>
+
 
         </div>
     )

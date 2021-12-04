@@ -1,27 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthProvider'
 
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+
 import axios from 'axios';
-
-
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+import Createbudget from './Createbudget';
+import Form from './utils/Form';
 
 
 
@@ -30,6 +13,9 @@ const Tablebudgets = () => {
     const { people, UserChange } = useContext(AuthContext)
     const [data, setData] = useState([])
     const [dataTable, setDataTable] = useState([])
+    const [result, setResult] = useState([])
+    const [edit, setEdit] = useState(true)
+    const [editID, setEditID] = useState("")
 
 
 
@@ -76,67 +62,102 @@ const Tablebudgets = () => {
 
             }
         });
-        // console.log(n.data[0])
         const element = n.data
         setDataTable(element)
 
     }
 
 
+    const OrderBy = () => {
+        const rEgress = dataTable.filter(item => item.type === "egress")
+        const rEntry = dataTable.filter(item => item.type === "entry")
+        const rEg = rEgress.slice(0, 5)
+        const rEn = rEntry.slice(0, 5)
+
+
+
+
+        setResult({
+            ...rEg,
+            ...rEn
+
+        })
+
+
+    }
+    // console.log({...result})
+
+    // console.log({...dataTable})
+
+    const EditBudgets = (id_budget) => {
+        setEditID(id_budget)
+        setEdit(false)
+    }
 
 
 
     return (
         <div>
 
+            {
+                edit ? (
+                    <table class="table table-border cell-border subcompact striped">
+                        <thead>
+                            <tr>
+                                <th>concept</th>
+                                <th>amount</th>
+                                <th>data</th>
+                                <th>type</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
 
-            <button type="submit" onClick={() => logout()} className="btn btn-primary center">LogOut</button>
-
-            <table class="table table-border cell-border subcompact striped">
-                <thead>
-                    <tr>
-                        <th>concept</th>
-                        <th>amount</th>
-                        <th>data</th>
-                        <th>type</th>
-                        <th>action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-
-                        dataTable
-
-                            .map((item, index) =>
-
-
-
-                                <tr key={index}>
+                                dataTable
+                                    .slice(0, 10)
+                                    .map((item, index) =>
 
 
 
-                                    <td>{item.concept}</td>
-                                    <td>{item.amount}</td>
-                                    <td>{item.date}</td>
-                                    <td>{item.type}</td>
-
-
-                                    <td>
-
-                                        <button className="btn-primary btn-sm"
-                                        // onClick={(() => paraEditar(item.id_policys))}
-                                        >Editar</button>
-
-
-                                    </td>
-                                </tr>
-                            )
-                    }
+                                        <tr key={index}>
 
 
 
-                </tbody>
-            </table>
+                                            <td>{item.concept}</td>
+                                            <td>{item.amount}</td>
+                                            <td>{item.date}</td>
+                                            <td>{item.type}</td>
+
+
+                                            <td>
+
+                                                <button className="btn-primary btn-sm"
+                                                    onClick={(() => EditBudgets(item.id_budget))}
+                                                >Edit</button>
+
+
+                                            </td>
+                                        </tr>
+                                    )
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                ) :
+                    (
+                        <Form value={editID}/>
+                    )
+            }
+            {/* <button type="submit" onClick={() => logout()} className="btn btn-primary center">LogOut</button> */}
+
+
+
+            {/* <button type="submit" onClick={() => OrderBy()} className="btn btn-primary center">Order By Type</button> */}
+
+
 
 
 

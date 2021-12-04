@@ -17,7 +17,7 @@ const Presentation = (props) => {
 
     return (
         <div className="presentation">
-            <div className="container">
+            <div className="App">
                 <h1>Esta es la presentación</h1>
 
             </div>
