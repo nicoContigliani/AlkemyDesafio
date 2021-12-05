@@ -135,9 +135,9 @@ const Tablebudgets = () => {
                                             <td>{item.type}</td>
 
 
-                                            <td>
+                                            <td className="center">
 
-                                                <button className="btn-primary btn-sm"
+                                                <button className="btn-primary btn-xll"
                                                     onClick={(() => EditBudgets(item.id_budget))}
                                                 >Edit</button>
 
