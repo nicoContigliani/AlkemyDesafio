@@ -4,9 +4,18 @@ import { useHistory } from "react-router-dom";
 
 
 const Form = (props) => {
+    const [data, setData] = useState("")
+    const [edit, setEdit] = useState(false)
+    const [dleteId,setDeleteID]=useState([])
+    const [element, setElmenet] = useState({
+        concept: "concept",
+        amount: "amount",
+        date: "date",
+        type: "type"
+
+    })
     let history = useHistory();
 
-    const [data, setData] = useState("")
     const [user, setUser] = useState({
         email: "email@gmail.com",
         fullname: "customer",
@@ -22,8 +31,13 @@ const Form = (props) => {
                     setUser(userSession)
                 }
             }
-        }, 1000);
 
+        }, 1000);
+        if (props.value.edit === true) {
+            setEdit(true)
+            setData(props.value);
+
+        }
     }, [])
 
 
@@ -69,25 +83,113 @@ const Form = (props) => {
         history.push("/");
     }
 
-    console.log(props)
+    const edits = async (e) => {
+        e.preventDefault()
+        console.log(data);
+        const id_user = parseInt(data.id_user)
+        const {
+            amount, concept, date, id_budget, type
+        } = data
+
+
+        // console.log("esto es desde editar ", amount, concept, date, id_user, type);
+
+        const n = await axios({
+            url: `http://localhost:3001/api/budgets/${id_budget}`,
+            method: 'POST',
+            contentType: 'application/json',
+            // data: JSON.stringify({ ...user}),
+            data: { amount, concept, date, id_user, type },
+            success: function (response) {
+                // console.log(response);
+                // localStorage.setItem('userSession', JSON.stringify(response))
+
+            }
+        });
+        handleClick()
+        handleClick()
+
+
+    }
+    const onchangeFormE = (e) => {
+        // console.log(e.target.value);
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const deletes = async (e) => {
+        e.preventDefault()
+       
+        const n = await axios({
+            url: `http://localhost:3001/api/budgets/${data.id_budget}`,
+            method: 'DELETE',
+            contentType: 'application/json',
+            // data: JSON.stringify({ ...user}),
+            // data: { amount, concept, date, id_user, type },
+            success: function (response) {
+                 console.log(response);
+                // localStorage.setItem('userSession', JSON.stringify(response))
+
+            }
+        });
+        handleClick()
+
+
+        
+    }
+
 
     return (
+
         <div id="mainbudget">
+            {
+                edit ? (
+                    <div>
+                        <form onSubmit={edits} >
+
+                            <input defaultValue={props.value.concept} onChange={onchangeFormE} name="concept" type="text" class="metro-input" placeholder="Concept" />
+                            <input defaultValue={props.value.amount} onChange={onchangeFormE} name="amount" type="number" class="metro-input mt-2" placeholder="Amout" />
+                            <input defaultValue={props.value.date} onChange={onchangeFormE} name="date" type="date" class="metro-input mt-2" placeholder="Concept" />
+                            <br /><span>{props.value.date}</span>
+                            <select defaultValue={props.value.date} name="type" onChange={onchangeFormE} placeholder="type" class="metro-input mt-2">
+                                <option > Type</option>
+                                <option name="type" value="entry">Entry</option>
+                                <option name="type" value="egress">Egress</option>
+
+                            </select>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" className="btn btn-primary mt-2 ">Update</button>
+
+                            </div>
+
+                        </form>
+                        <div class="d-grid gap-2">
+                            <button name="id_bud" type="submit" onClick={deletes} className="btn btn-outline-danger mt-2 ml-2 ">Delete</button>
+                        </div>
 
 
-            <form onSubmit={send} >
+                    </div>
+                ) : (
+                    <form onSubmit={send} >
 
-                <input onChange={onchangeForm} name="concept" type="text" class="metro-input" placeholder="Concept" />
-                <input onChange={onchangeForm} name="amount" type="number" class="metro-input mt-2" placeholder="Amout" />
-                <input onChange={onchangeForm} name="date" type="date" class="metro-input mt-2" placeholder="Concept" />
-                <select name="type" onChange={onchangeForm} placeholder="type" class="metro-input mt-2">
-                    <option > Type</option>
-                    <option name="type" value="entry">Entry</option>
-                    <option name="type" value="egress">Egress</option>
+                        <input onChange={onchangeForm} name="concept" type="text" class="metro-input" placeholder="Concept" />
+                        <input onChange={onchangeForm} name="amount" type="number" class="metro-input mt-2" placeholder="Amout" />
+                        <input onChange={onchangeForm} name="date" type="date" class="metro-input mt-2" placeholder="Concept" />
+                        <select name="type" onChange={onchangeForm} placeholder="type" class="metro-input mt-2">
+                            <option > Type</option>
+                            <option name="type" value="entry">Entry</option>
+                            <option name="type" value="egress">Egress</option>
 
-                </select>
-                <button type="submit" className="btn btn-primary mt-2 ">Send</button>
-            </form>
+                        </select>
+                        <button type="submit" className="btn btn-primary mt-2 ">Send</button>
+                    </form>
+                )
+
+            }
+
 
             {/* <button type="button" onClick={handleClick}>
                /

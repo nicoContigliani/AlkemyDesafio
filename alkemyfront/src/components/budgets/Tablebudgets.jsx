@@ -89,8 +89,13 @@ const Tablebudgets = () => {
 
     // console.log({...dataTable})
 
-    const EditBudgets = (id_budget) => {
-        setEditID(id_budget)
+    const EditBudgets = async (id_budget) => {
+        const budgetsforID = await dataTable.filter(item => (id_budget === item.id_budget))
+        const element = budgetsforID[0]
+        const elements = { ...element, edit: true }
+
+
+        setEditID(elements)
         setEdit(false)
     }
 
@@ -148,7 +153,7 @@ const Tablebudgets = () => {
                     </table>
                 ) :
                     (
-                        <Form value={editID}/>
+                        <Form value={editID} />
                     )
             }
             {/* <button type="submit" onClick={() => logout()} className="btn btn-primary center">LogOut</button> */}

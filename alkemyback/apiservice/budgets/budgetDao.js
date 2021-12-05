@@ -51,6 +51,7 @@ const deleteBudget = async (id_budget) => {
 }
 
 const updateBudget = async (everything) => {
+    console.log(everything)
     try {
 
         const { concept, amount, date, id_user, type, id_budget } = everything;
