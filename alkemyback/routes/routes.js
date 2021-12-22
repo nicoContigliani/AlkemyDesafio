@@ -13,10 +13,10 @@ const auth = require('../apiservice/auths/authRoutes')
 //   res.send('respond with a resource');
 // });
 
+router.use('/auth', auth);
 
 router.use('/users', users);
 router.use('/budgets', auths, budgets);
-router.use('/auth', auth);
 
 router.post("/welcome", auths, (req, res) => {
     res.status(200).send("Welcome 🙌 ");

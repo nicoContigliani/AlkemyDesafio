@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 
-const user = require('./authController');
+const auth = require('./authController');
 
 
-router.get('/', user.gets);
+router.get('/', auth.gets);
 //  router.get('/sigin', user.sigin);
-router.post('/register', user.register);
-router.post('/login', user.login);
+router.post('/register', auth.register);
+router.post('/login', auth.login);
 
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {

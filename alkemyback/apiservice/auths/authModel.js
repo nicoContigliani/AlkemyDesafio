@@ -42,32 +42,37 @@ const login = async (elemento) => {
   const password = elemento.password;
   const fullname = elemento.fullname;
   const resultados = user.filter(u => u.email === email)
-  const id_user = resultados[0].id_user;
+  // const id_user = resultados[0].id_user;
+  if (resultados.length === 0) {
+    console.log("not email")
 
-  if (resultados.length >= 1 && await bcrypt.compare(password, resultados[0].password)) {
-
-
-    // create token
-
-
-    // res.header('auth-token', token).json({
-    //   error: null,
-    //   data: { token }
-    // })
-
-    // console.log(token)
-    // console.log(resultados[0])
-
-    users.push(resultados)
-  } else {
-
-    users.push([[
+    users.push([
       {
         "id_user": 0,
-        "email": "not user"
+        "email": "not user",
+        "password": "not compare ",
+        "error": 401
       }
-    ]])
+    ])
+  } else {
+
+    if (resultados.length >= 1 && await bcrypt.compare(password, resultados[0].password)) {
+      users.push(resultados)
+    } else {
+
+      users.push([
+        {
+          "id_user": 0,
+          "email": "user exist",
+          "password": "error",
+          "error": 401
+        }
+      ])
+    }
   }
+
+
+
   return users
 }
 
