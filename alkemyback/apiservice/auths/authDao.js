@@ -31,8 +31,9 @@ const RegisterPost = async (newUsers) => {
     const password = newUsers.hashedPassword;
     const fullname = newUsers.fullname;
     const email = newUsers.email;
+    const id_rol = newUsers.id_rol;
     try {
-        const response = await pool.query('INSERT INTO public.users (fullname, password,email) VALUES ($1, $2,$3)', [fullname, password, email]);
+        const response = await pool.query('INSERT INTO public.users (fullname, password,email,id_rol) VALUES ($1, $2,$3,$4)', [fullname, password, email, id_rol]);
         return user
     } catch (error) {
         console.log(error)

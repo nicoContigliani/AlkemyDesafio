@@ -40,11 +40,11 @@ const login = async (elemento) => {
   const user = await usersDao.LoginGet()
   const email = elemento.email;
   const password = elemento.password;
-  const fullname=elemento.fullname;
+  const fullname = elemento.fullname;
   const resultados = user.filter(u => u.email === email)
-// const hassPassword = resultados[0].password;
+  // const hassPassword = resultados[0].password;
 
-  
+
   // // console.log(resultados.length)
   // if (await bcrypt.compare(password, resultados[0].password)) {
   //   console.log("son iguales")
@@ -56,7 +56,7 @@ const login = async (elemento) => {
 
     users.push(resultados)
   } else {
-    
+
     users.push([[
       {
         "id_user": 0,
