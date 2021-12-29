@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserActionn, showBoudgetsActionn } from '../../features/Redux/boudgetsDucks'
+import Tablebudgets from './Tablebudgets';
+
 
 const Boudgets = (props) => {
     const [data, setData] = useState({
@@ -29,6 +31,7 @@ const Boudgets = (props) => {
     }, [])
 
     const dispatch = useDispatch()
+
     const budgets = useSelector(store => store.budgets)
 
 
@@ -54,14 +57,14 @@ const Boudgets = (props) => {
 
     setTimeout(() => {
 
-        const dataUser = budgets.array;
+        const data = budgets.array.data;
         // console.log(dataUser, "lo logre")
-        setData(dataUser)
+        setDataBudgest(data)
+
     }, 3000);
 
-    // console.log(data)
+    console.log(dataBudgest)
 
-    console.log(budgets.array.data)
 
     return (
         <div>
@@ -73,7 +76,10 @@ const Boudgets = (props) => {
             <br />
             {/* Welcome {data.fullname} */}
 
-            {budgets.array.data !== undefined ? ("si") : ("no")}
+            {budgets.array.data !== undefined ? (
+                <Tablebudgets value={dataBudgest} />
+
+            ) : ("no")}
         </div>
     )
 }

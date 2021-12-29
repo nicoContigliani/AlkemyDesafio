@@ -1,26 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-
 import { useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAction, getUserActions } from '../features/Redux/authDucks';
 
-
-
-const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().min(8).max(32).required(),
-});
-const schemas = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().min(8).max(32).required(),
-    fullname: yup.string().min(8).max(32).required()
-});
 
 
 
@@ -34,8 +18,44 @@ const Auth = (props) => {
 
     const [logs, setLogs] = useState(true)
 
-    const user = useSelector(store => store.user)
 
+
+    useEffect(() => {
+        // setTimeout(() => {
+
+        //     if (localStorage.getItem('usuario')) {
+        //         const userSession = JSON.parse(localStorage.getItem('usuario'))
+        //         if (parseInt(userSession.id_user) !== 0) {
+        //             setData(userSession)
+        //         } else {
+        //             console.log("no posee usuario logueado")
+
+        //         }
+        //     }
+
+        // }, 1000);
+        // if (props.value.edit === true) {
+        //     setEdit(true)
+        //     setData(props.value);
+
+        // }
+    }, [])
+
+
+
+    const user = useSelector(store => store.user)
+    // console.log(user)
+
+    // const pokemones = useSelector(store => store.pokemones.array
+    // )
+    // console.log(user.array.token, "token");
+    // console.log(user.array.rest[0], "array");
+    // console.log(user.array.rest[0], "array");
+    // console.log(user);
+
+    // const emailss = user.array.email;
+    // const fullname = user.array.fullname
+    // const todo = user.array
     const dataInitial = {
         array: [],
         password: "123465789",
@@ -46,41 +66,27 @@ const Auth = (props) => {
 
 
 
-    // const onchangeUserData = (e) => {
-    //     setUsers({
-    //         ...users,
-    //         [e.target.name]: e.target.value
-    //     })
+    const onchangeUserData = (e) => {
+        setUsers({
+            ...users,
+            [e.target.name]: e.target.value
+        })
 
-    // }
-
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({
-        resolver: yupResolver(schema),
-    });
+    }
 
 
+    const insertLog = async (e) => {
+        e.preventDefault()
 
-    const insertLog = async (data) => {
-        // e.preventDefault()
-
-        // const dataInitials = {
-        //     array: [],
-        //     password: users.password,
-        //     email: users.email
-        // }
         const dataInitials = {
             array: [],
-            password: data.password,
-            email: data.email
+            password: users.password,
+            email: users.email
         }
         const x = getUserAction(dataInitials)
         // console.log(x);
         dispatch(x)
         // console.log(user.array.error, "esto es lo que viene del store **********");
-
-        reset();
-
-
         if (user.array.error === null) {
 
             // history.push('/');
@@ -107,15 +113,15 @@ const Auth = (props) => {
 
     }
     // console.log(userss);
-    const insertRegister = async (datas) => {
-        // e.preventDefault()
+    const insertRegister = async (e) => {
+        e.preventDefault()
 
 
         const dataInitials = {
             array: [],
-            fullname: datas.fullname,
-            password: datas.password,
-            email: datas.email,
+            fullname: userss.fullname,
+            password: userss.password,
+            email: userss.email,
         }
         // console.log("auth.jsx - fronEnd valor data Initial", dataInitials);
 
@@ -126,9 +132,6 @@ const Auth = (props) => {
 
         console.log(user);
         console.log(user.array.error, "esto es lo que viene del store **********");
-        reset();
-
-
         if (user.array.error === null) {
             // history.push('/');
             alert("hola")
@@ -168,31 +171,17 @@ const Auth = (props) => {
                 logs ? (
                     <div className="App">
                         <h1 className="App">Login</h1>
-                        {/* <form onSubmit={insertLog}> */}
-                        <form onSubmit={handleSubmit(insertLog)}>
-
+                        <form onSubmit={insertLog}>
 
                             < div className="container">
                                 <div className="input-group">
 
-                                    <input type="email" className="form-control" placeholder="email"
-                                        // name="email"
-                                        //  onChange={onchangeUserData}
-                                        {...register("email")}
-                                        required
+                                    <input type="email" className="form-control" placeholder="email" name="email"
+                                        onChange={onchangeUserData}
                                     />
-                                    <br />
-                                    <p>{errors.email?.message}</p>
-
-                                    <input type="password" className="form-control" placeholder="password"
-                                        // name="password"
-                                        // onChange={onchangeUserData}
-                                        {...register("password")}
-                                        required
+                                    <input type="password" className="form-control" placeholder="password" name="password"
+                                        onChange={onchangeUserData}
                                     />
-                                    <br />
-                                    <p>{errors.password?.message}</p>
-
                                 </div>
                                 <br />
                                 <div className="center">
@@ -212,37 +201,17 @@ const Auth = (props) => {
                             <div className="container">
                                 <div className="input-group">
 
-                                    <input type="text" className="form-control" placeholder="email"
-                                        // name="email" onChange={onchangeUserDatass} />
-                                        {...register("email")}
-                                        required
-                                    />
-                                    <br />
-                                    <p>{errors.email?.message}</p>
+                                    <input type="text" className="form-control" placeholder="email" name="email" onChange={onchangeUserDatass} />
+                                </div>
+                                <div className="input-group">
+
+                                    <input type="text" className="form-control" placeholder="fullname" name="fullname" onChange={onchangeUserDatass} />
 
                                 </div>
                                 <div className="input-group">
 
-                                    <input type="text" className="form-control" placeholder="fullname"
-                                        // // name="fullname" onChange={onchangeUserDatass} />
-                                        {...register("fullname")}
-                                        required
-                                    />
-                                    <br />
-                                    <p>{errors.fullname?.message}</p>
-
-
-                                </div>
-                                <div className="input-group">
-
-                                    <input type="password" className="form-control" placeholder="password"
-                                        // name="password" onChange={onchangeUserDatass} />
-                                        {...register("password")}
-                                        required
-                                    />
-                                    <br />
-                                    <p>{errors.password?.message}</p>
-
+                                    <input type="password" className="form-control" placeholder="password" name="password" onChange={onchangeUserDatass} />
+                                    {/* <input type="password" class="form-control" placeholder="repeat password" name="password" onChange={onchangeUserDatas} /> */}
                                 </div>
                                 <br />
                                 <div className="center"><br />
