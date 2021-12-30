@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Createbudget from './Createbudget'
 import Form from './Form';
+import { set } from 'react-hook-form';
 
 
 
@@ -14,9 +15,17 @@ const Tablebudgets = (props) => {
     // const { people, UserChange } = useContext(AuthContext)
     const [data, setData] = useState([])
     const [dataTable, setDataTable] = useState([])
-    const [result, setResult] = useState([])
+    const [dataTableOrderBy, setDataTableOrderBy] = useState([])
+    const [dataTableOrigin, setDataTableOrigin] = useState([])
+
+
+
+    const [result, setResult] = useState()
     const [edit, setEdit] = useState(true)
     const [editID, setEditID] = useState("")
+
+
+
 
 
 
@@ -28,75 +37,31 @@ const Tablebudgets = (props) => {
         }
         setTimeout(() => {
             // console.log(props);
-            console.log("desde la tabla ", budgets.array.data);
-            setDataTable(budgets.array.data)
-        }, 6000);
-        getEveryThing()
+            // console.log("desde la tabla ", budgets.array.data);
+            setDataTableOrigin(budgets.array.con);
+            setDataTableOrderBy(budgets.array.dataBud)
+            console.log(budgets.array.dataBud, "tabla")
+            if (budgets.array.dataBud === undefined) {
+                // console.log("sale indefinido");
+            } else {
+                // console.log("paso");
+                setDataTable(budgets.array.con)
+            }
+
+
+
+        }, 15000);
+
+
+
+
+
+
     }, [])
     const dispatch = useDispatch()
 
     const budgets = useSelector(store => store.budgets)
-    // console.log(data, "toma por miron")
 
-    // const logout = () => {
-    //     UserChange({
-    //         email: "",
-    //         fullname: "",
-    //         id_user: 0
-
-    //     }
-    //     )
-    //     window.location.reload();
-    // }
-
-
-
-    const getEveryThing = async () => {
-
-
-
-
-
-        // console.log({ ...user });
-        // const id_user = 3;
-        // const n = await axios({
-        //     url: `http://localhost:3001/api/budgets/${id_user}`,
-        //     method: 'GET',
-        //     contentType: 'application/json',
-
-
-        //     success: function (response) {
-        //         console.log(response);
-        //         // localStorage.setItem('userSession', JSON.stringify(response))
-
-        //     }
-        // });
-        // const element = n.data
-        // setDataTable(element)
-
-    }
-
-
-    const OrderBy = () => {
-        const rEgress = dataTable.filter(item => item.type === "egress")
-        const rEntry = dataTable.filter(item => item.type === "entry")
-        const rEg = rEgress.slice(0, 5)
-        const rEn = rEntry.slice(0, 5)
-
-
-
-
-        setResult({
-            ...rEg,
-            ...rEn
-
-        })
-
-
-    }
-    // console.log({...result})
-
-    // console.log({...dataTable})
 
     const EditBudgets = async (id_budget) => {
         const budgetsforID = await dataTable.filter(item => (id_budget === item.id_budget))
@@ -108,68 +73,92 @@ const Tablebudgets = (props) => {
         setEdit(false)
     }
 
+    const orderBy = () => {
+        setDataTable(budgets.array.dataBud);
+    }
+    const changeDataOrigin = () => {
+        // console.log(dataTableOrigin);
+        setDataTable(budgets.array.con);
 
+        // setDataTable(dataTableOrigin)
+
+    }
 
     return (
-        <div className='reduction'>
+        <div>
+            <br />
 
-            {
-                edit ? (
-                    <table class="table table-border cell-border subcompact striped">
-                        <thead>
-                            <tr>
-                                <th>concept</th>
-                                <th>amount</th>
-                                <th>data</th>
-                                <th>type</th>
-                                <th>action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
+            <div className='reduction'>
+                <div class="btn-group">
 
-                                dataTable
-                                    .slice(0, 10)
-                                    .map((item, index) =>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
 
+                    <button className='btn btn-outline-info btn-sm mb-1' onClick={changeDataOrigin}>
+                        Element
+                    </button>
+                    <button type="button" className="btn btn-outline-info btn-sm mb-1" onClick={orderBy}>
+                        Element Order
+                    </button>
+                </div>
+                {
+                    edit ? (
+                        <table className="table table-border cell-border subcompact striped">
+                            <thead>
+                                <tr>
+                                    <th>concept</th>
+                                    <th>amount</th>
+                                    <th>data</th>
+                                    <th>type</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
 
-                                        <tr key={index}>
-
-
-
-                                            <td>{item.concept}</td>
-                                            <td>{item.amount}</td>
-                                            <td>{item.date}</td>
-                                            <td>{item.type}</td>
-
-
-                                            <td className="center">
-
-                                                <button className="btn-primary btn-sm"
-                                                    onClick={(() => EditBudgets(item.id_budget))}
-                                                >Edit</button>
-
-
-                                            </td>
-                                        </tr>
-                                    )
-                            }
+                                    dataTable
+                                        .slice(0, 10)
+                                        .map((item, index) =>
 
 
 
-                        </tbody>
-                    </table>
-                ) :
-                    (
-                        <Form value={editID} />
-                    )
-            }
-            {/* <button type="submit" onClick={() => logout()} className="btn btn-primary center">LogOut</button> */}
+                                            <tr key={index}>
 
 
 
-            {/* <button type="submit" onClick={() => OrderBy()} className="btn btn-primary center">Order By Type</button> */}
+                                                <td>{item.concept}</td>
+                                                <td>{item.amount}</td>
+                                                <td>{item.date}</td>
+                                                <td>{item.type}</td>
+
+
+                                                <td className="center">
+
+                                                    <button className="btn-primary btn-sm"
+                                                        onClick={(() => EditBudgets(item.id_budget))}
+                                                    >Edit</button>
+
+
+                                                </td>
+                                            </tr>
+                                        )
+                                }
+
+
+
+                            </tbody>
+                        </table>
+                    ) :
+                        (
+                            <Form value={editID} />
+                        )
+                }
+                {/* <button type="submit" onClick={() => logout()} className="btn btn-primary center">LogOut</button> */}
+
+
+
+                {/* <button type="submit" onClick={() => OrderBy()} className="btn btn-primary center">Order By Type</button> */}
 
 
 
@@ -181,7 +170,9 @@ const Tablebudgets = (props) => {
 
 
 
+            </div>
         </div>
+
     )
 }
 

@@ -1,200 +1,142 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { createBoudgetsActionn } from '../../features/Redux/boudgetsDucks';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+
+
+const schema = yup.object().shape({
+
+    concept: yup.string().min(3).max(180).required(),
+    amount: yup.number().min(1).required(),
+    date: yup.date().required(),
+    type: yup.string().min(3).max(100).required(),
+});
+
+
 
 
 const Form = (props) => {
-    const [data, setData] = useState("")
+    //aca va a tener que haber algo que venga con true de editar 
     const [edit, setEdit] = useState(false)
-    const [dleteId,setDeleteID]=useState([])
-    const [element, setElmenet] = useState({
-        concept: "concept",
-        amount: "amount",
-        date: "date",
-        type: "type"
 
-    })
-    let history = useHistory();
 
-    const [user, setUser] = useState({
-        email: "email@gmail.com",
-        fullname: "customer",
-        id_user: 1000000000000
-    })
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        setTimeout(() => {
 
-            if (localStorage.getItem('userSession')) {
-                const userSession = JSON.parse(localStorage.getItem('userSession'))
-                if (parseInt(userSession.id_user) !== 0) {
-                    setUser(userSession)
-                }
-            }
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(schema),
+    });
 
-        }, 1000);
-        if (props.value.edit === true) {
-            setEdit(true)
-            setData(props.value);
 
+
+    const create = (data) => {
+        console.log({ data });
+        // reset();
+
+
+
+        // e.preventDefault()
+
+        // const dataInitials = {
+        //     array: [],
+        //     password: users.password,
+        //     email: users.email
+        // }
+        const dataInitials = {
+            array: [],
+            concept: data.concept,
+            amount: data.amount,
+            date: data.date,
+            type: data.type
         }
-    }, [])
+        const x = createBoudgetsActionn(dataInitials)
+        // console.log(x);
+        dispatch(x)
+        // console.log(user.array.error, "esto es lo que viene del store **********");
+
+        reset();
 
 
-    const insertBudgets = async (element) => {
+        // if (user.array.error === null) {
+
+        //     // history.push('/');
+        //     alert("hola")
+        //     setTimeout(() => {
+        //         window.location.reload(false);
+        //     }, 1000);
+        // } else {
+        //     console.log("no paso")
+        //     setTimeout(() => {
+        //         window.location.reload(false);
+        //     }, 1000);
+
+        // }
 
 
-        const n = await axios({
-            url: 'http://localhost:3001/api/budgets/',
-            method: 'POST',
-            contentType: 'application/json',
-            // data: JSON.stringify({ ...user}),
-            data: { ...element },
-            success: function (response) {
-                console.log(response);
-                // localStorage.setItem('userSession', JSON.stringify(response))
-
-            }
-        });
-        handleClick()
-    }
-
-    const onchangeForm = (e) => {
-        // console.log(e.target.value);
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const send = (e) => {
-        e.preventDefault()
-        console.log(data);
-        const id_user = user.id_user;
-        const forsend = {
-            ...data,
-            id_user
-
-        };
-        insertBudgets(forsend)
-    }
-
-    function handleClick() {
-        history.push("/");
-    }
-
-    const edits = async (e) => {
-        e.preventDefault()
-        console.log(data);
-        const id_user = parseInt(data.id_user)
-        const {
-            amount, concept, date, id_budget, type
-        } = data
+    };
 
 
-        // console.log("esto es desde editar ", amount, concept, date, id_user, type);
-
-        const n = await axios({
-            url: `http://localhost:3001/api/budgets/${id_budget}`,
-            method: 'POST',
-            contentType: 'application/json',
-            // data: JSON.stringify({ ...user}),
-            data: { amount, concept, date, id_user, type },
-            success: function (response) {
-                // console.log(response);
-                // localStorage.setItem('userSession', JSON.stringify(response))
-
-            }
-        });
-        handleClick()
-        handleClick()
-
-
-    }
-    const onchangeFormE = (e) => {
-        // console.log(e.target.value);
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const deletes = async (e) => {
-        e.preventDefault()
-       
-        const n = await axios({
-            url: `http://localhost:3001/api/budgets/${data.id_budget}`,
-            method: 'DELETE',
-            contentType: 'application/json',
-            // data: JSON.stringify({ ...user}),
-            // data: { amount, concept, date, id_user, type },
-            success: function (response) {
-                 console.log(response);
-                // localStorage.setItem('userSession', JSON.stringify(response))
-
-            }
-        });
-        handleClick()
-
-
-        
-    }
 
 
     return (
+        <div>
+            <h1>Form</h1>
 
-        <div id="mainbudget">
             {
                 edit ? (
-                    <div>
-                        <form onSubmit={edits} >
+                    <form onSubmit={handleSubmit(create)}>
+                        <br />
 
-                            <input defaultValue={props.value.concept} onChange={onchangeFormE} name="concept" type="text" class="metro-input" placeholder="Concept" />
-                            <input defaultValue={props.value.amount} onChange={onchangeFormE} name="amount" type="number" class="metro-input mt-2" placeholder="Amout" />
-                            <input defaultValue={props.value.date} onChange={onchangeFormE} name="date" type="date" class="metro-input mt-2" placeholder="Concept" />
-                            <br /><span>{props.value.date}</span>
-                            <select defaultValue={props.value.date} name="type" onChange={onchangeFormE} placeholder="type" class="metro-input mt-2">
-                                <option > Type</option>
-                                <option name="type" value="entry">Entry</option>
-                                <option name="type" value="egress">Egress</option>
-
-                            </select>
-
-                            <div class="d-grid gap-2">
-                                <button type="submit" className="btn btn-primary mt-2 ">Update</button>
-
-                            </div>
-
-                        </form>
-                        <div class="d-grid gap-2">
-                            <button name="id_bud" type="submit" onClick={deletes} className="btn btn-outline-danger mt-2 ml-2 ">Delete</button>
-                        </div>
+                        <input {...register("concept")} placeholder="concept" type="text" required />
+                        <p>{errors.concept?.message}</p>
+                        <br />
+                        <input {...register("amount")} placeholder="amount" type="number" required />
+                        <p>{errors.amount?.message}</p>
+                        <br />
+                        <input {...register("date")} placeholder="date" type="date" required />
+                        <p>{errors.date?.message}</p>
+                        <br />
+                        <input {...register("type")} placeholder="type" type="type" required />
+                        <p>{errors.type?.message}</p>
+                        <br />
 
 
-                    </div>
+
+                        <button type="submit">Sign in</button>
+                    </form>
                 ) : (
-                    <form onSubmit={send} >
+                    <form onSubmit={handleSubmit(create)}>
+                        <br />
+                        <input {...register("concept")} placeholder="concept" type="text" required />
+                        <p>{errors.concept?.message}</p>
+                        <br />
+                        <input {...register("amount")} placeholder="amount" type="number" required />
+                        <p>{errors.amount?.message}</p>
+                        <br />
+                        <input {...register("date")} placeholder="date" type="date" required />
+                        <p>{errors.date?.message}</p>
+                        <br />
+                        <input {...register("type")} placeholder="type" type="type" required />
+                        <p>{errors.type?.message}</p>
+                        <br />
 
-                        <input onChange={onchangeForm} name="concept" type="text" class="metro-input" placeholder="Concept" />
-                        <input onChange={onchangeForm} name="amount" type="number" class="metro-input mt-2" placeholder="Amout" />
-                        <input onChange={onchangeForm} name="date" type="date" class="metro-input mt-2" placeholder="Concept" />
-                        <select name="type" onChange={onchangeForm} placeholder="type" class="metro-input mt-2">
-                            <option > Type</option>
-                            <option name="type" value="entry">Entry</option>
-                            <option name="type" value="egress">Egress</option>
-
-                        </select>
-                        <button type="submit" className="btn btn-primary mt-2 ">Send</button>
+                        <button type="submit">Sign in</button>
                     </form>
                 )
-
             }
 
 
-            {/* <button type="button" onClick={handleClick}>
-               /
-            </button> */}
+
+
         </div>
+
     )
 }
 

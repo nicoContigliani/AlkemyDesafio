@@ -175,7 +175,7 @@ const Auth = (props) => {
                             < div className="container">
                                 <div className="input-group">
 
-                                    <input type="email" className="form-control" placeholder="email"
+                                    <input type="email" className="form-control" placeholder="email" type="email"
                                         // name="email"
                                         //  onChange={onchangeUserData}
                                         {...register("email")}
@@ -184,7 +184,7 @@ const Auth = (props) => {
                                     <br />
                                     <p>{errors.email?.message}</p>
 
-                                    <input type="password" className="form-control" placeholder="password"
+                                    <input type="password" className="form-control" placeholder="password" type="password"
                                         // name="password"
                                         // onChange={onchangeUserData}
                                         {...register("password")}
@@ -212,7 +212,7 @@ const Auth = (props) => {
                             <div className="container">
                                 <div className="input-group">
 
-                                    <input type="text" className="form-control" placeholder="email"
+                                    <input type="text" className="form-control" placeholder="email" type="email"
                                         // name="email" onChange={onchangeUserDatass} />
                                         {...register("email")}
                                         required
@@ -223,7 +223,8 @@ const Auth = (props) => {
                                 </div>
                                 <div className="input-group">
 
-                                    <input type="text" className="form-control" placeholder="fullname"
+                                    <input type="text" className="form-control" placeholder="fullname" type="text"
+                                        // name="password"
                                         // // name="fullname" onChange={onchangeUserDatass} />
                                         {...register("fullname")}
                                         required
@@ -235,7 +236,8 @@ const Auth = (props) => {
                                 </div>
                                 <div className="input-group">
 
-                                    <input type="password" className="form-control" placeholder="password"
+                                    <input type="password" className="form-control" placeholder="password" type="password"
+                                        // name="password"
                                         // name="password" onChange={onchangeUserDatass} />
                                         {...register("password")}
                                         required

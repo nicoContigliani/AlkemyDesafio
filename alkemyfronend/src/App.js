@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Boudgets from './components/boudgets/Boudgets';
+import Form from './components/boudgets/Form'
 
 function App() {
   const store = generateStore();
@@ -57,8 +58,8 @@ function App() {
               <Router>
                 <Navbar />
                 <Switch>
-                  <Route exact path="/" component={Main} />
-                  <Route path="/boudgets" component={Boudgets} />
+                  <Route exact path="/" component={Boudgets} />
+                  <Route path="/boudgetsForm" component={Form} />
                 </Switch>
               </Router>
 

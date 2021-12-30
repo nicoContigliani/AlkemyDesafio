@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserActionn, showBoudgetsActionn } from '../../features/Redux/boudgetsDucks'
 import Tablebudgets from './Tablebudgets';
+import { css } from "@emotion/react";
+import Resulting from './Resulting';
+
+
+const override = css`
+  display: flex;
+  margin: 0 auto;
+  border-color: blue;
+`;
 
 
 const Boudgets = (props) => {
+    let [color, setColor] = useState("#ffffff");
+
     const [data, setData] = useState({
         email: "@",
         fullname: "n",
@@ -27,7 +40,7 @@ const Boudgets = (props) => {
         setTimeout(() => {
 
             dispatch(c)
-        }, 5000);
+        }, 3000);
     }, [])
 
     const dispatch = useDispatch()
@@ -55,10 +68,12 @@ const Boudgets = (props) => {
         dataInitial
     )
 
+
     setTimeout(() => {
 
         const data = budgets.array.data;
         // console.log(dataUser, "lo logre")
+        console.log(budgets.array, "boudgets set time out");
         setDataBudgest(data)
 
     }, 3000);
@@ -70,16 +85,22 @@ const Boudgets = (props) => {
         <div>
 
 
-            <button onClick={() => { dispatch(c); }}>
+            {/* <button onClick={() => { dispatch(c); }}>
                 send
-            </button>
+            </button> */}
             <br />
             {/* Welcome {data.fullname} */}
 
-            {budgets.array.data !== undefined ? (
-                <Tablebudgets value={dataBudgest} />
+            {budgets.array !== undefined ? (
+                <div>
+                    <Resulting value={dataBudgest} />
+                    <Tablebudgets value={dataBudgest} />
+                </div>
 
-            ) : ("no")}
+            ) : (
+                <ClipLoader color={color} css={override} size={150} />
+
+            )}
         </div>
     )
 }
