@@ -30,7 +30,6 @@ function App() {
       if (parseInt(userSession.id_user) !== 0) {
         // setLog(true)
         setLog(false)
-        // console.log(userSession, "variable de sesión")
       } else {
         console.log("debe loguearse")
 
@@ -42,7 +41,6 @@ function App() {
 
   return (
     <div >
-      {/* //////////////////////////////////////////////////////////////////// */}
       <Provider store={store}>
 
         {
@@ -52,7 +50,7 @@ function App() {
             </div>
           ) : (
             <div>
-              {/* <Navbar /> */}
+
 
 
               <Router>
@@ -67,9 +65,6 @@ function App() {
             </div>
           )
         }
-
-
-
 
       </Provider>
 

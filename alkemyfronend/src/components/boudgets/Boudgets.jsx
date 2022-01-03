@@ -25,6 +25,7 @@ const Boudgets = (props) => {
         fullname: "n",
 
     })
+    const [log, setLog] = useState(false)
     const [dataBudgest, setDataBudgest] = useState([
         {
             id_budget: "",
@@ -73,12 +74,19 @@ const Boudgets = (props) => {
 
         const data = budgets.array.data;
         // console.log(dataUser, "lo logre")
-        console.log(budgets.array, "boudgets set time out");
-        setDataBudgest(data)
 
-    }, 3000);
+        if (budgets.array !== undefined) {
 
-    console.log(dataBudgest)
+            setDataBudgest(data)
+            setLog(true)
+        }
+
+
+        // console.log(budgets.array, "boudgets set time out");
+
+    }, 5000);
+
+    // console.log(dataBudgest)
 
 
     return (
@@ -91,16 +99,18 @@ const Boudgets = (props) => {
             <br />
             {/* Welcome {data.fullname} */}
 
-            {budgets.array !== undefined ? (
-                <div>
-                    <Resulting value={dataBudgest} />
-                    <Tablebudgets value={dataBudgest} />
-                </div>
+            {
+                // budgets.array !== undefined
+                log ? (
+                    <div>
+                        <Resulting value={dataBudgest} />
+                        <Tablebudgets value={dataBudgest} />
+                    </div>
 
-            ) : (
-                <ClipLoader color={color} css={override} size={150} />
+                ) : (
+                    <ClipLoader color={color} css={override} size={150} />
 
-            )}
+                )}
         </div>
     )
 }

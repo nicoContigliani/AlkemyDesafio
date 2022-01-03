@@ -44,16 +44,6 @@ const Auth = (props) => {
 
     const x = getUserAction(dataInitial)
 
-
-
-    // const onchangeUserData = (e) => {
-    //     setUsers({
-    //         ...users,
-    //         [e.target.name]: e.target.value
-    //     })
-
-    // }
-
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
@@ -61,30 +51,20 @@ const Auth = (props) => {
 
 
     const insertLog = async (data) => {
-        // e.preventDefault()
 
-        // const dataInitials = {
-        //     array: [],
-        //     password: users.password,
-        //     email: users.email
-        // }
         const dataInitials = {
             array: [],
             password: data.password,
             email: data.email
         }
         const x = getUserAction(dataInitials)
-        // console.log(x);
         dispatch(x)
-        // console.log(user.array.error, "esto es lo que viene del store **********");
-
         reset();
 
 
         if (user.array.error === null) {
 
-            // history.push('/');
-            alert("hola")
+
             setTimeout(() => {
                 window.location.reload(false);
             }, 1000);
@@ -124,8 +104,8 @@ const Auth = (props) => {
         // console.log(x);
         dispatch(xx)
 
-        console.log(user);
-        console.log(user.array.error, "esto es lo que viene del store **********");
+        // console.log(user);
+        // console.log(user.array.error, "esto es lo que viene del store **********");
         reset();
 
 

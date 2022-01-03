@@ -50,7 +50,7 @@ const Tablebudgets = (props) => {
 
 
 
-        }, 15000);
+        }, 1000);
 
 
 
@@ -68,9 +68,9 @@ const Tablebudgets = (props) => {
         const element = budgetsforID[0]
         const elements = { ...element, edit: true }
 
-
         setEditID(elements)
         setEdit(false)
+        console.log(element);
     }
 
     const orderBy = () => {

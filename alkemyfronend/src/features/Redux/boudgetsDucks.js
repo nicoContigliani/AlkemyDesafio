@@ -189,19 +189,12 @@ export const createBoudgetsActionn = (valor) => async (dispatch, getState) => {
     const amount = valor.amount;
     const concept = valor.concept;
     const dateElement = valor.date;
+    const type = valor.type;
 
     var event = new Date(dateElement);
     let date = JSON.stringify(event)
     date = date.slice(1, 11)
     console.log(date)
-
-
-    // array: []
-    // concept: "service"
-    // date: Sat Jan 01 2022 00: 00: 00 GMT - 0300(hora estándar de Argentina) { }
-    // type: "algo"
-    // const amount = valor.data.amount;
-
 
 
 
@@ -213,7 +206,7 @@ export const createBoudgetsActionn = (valor) => async (dispatch, getState) => {
 
         const id_user = userSession.id_user;
         const token = userSession.token;
-        const url = `http://localhost:3001/api/budgets/${id_user}`
+        // const url = `http://localhost:3001/api/budgets/${id_user}`
 
         console.log(id_user, token)
         // const dataBoudgets = await axios({
@@ -228,12 +221,13 @@ export const createBoudgetsActionn = (valor) => async (dispatch, getState) => {
         // },
         // );
         // const dataBud = dataBoudgets.data;
+        console.log(concept, amount, date, id_user, type)
         const dataBud = await axios({
-            url: `http://localhost:3001/api/budgets/${id_user}?token=${token}`,
+            url: `http://localhost:3001/api/budgets/?token=${token}`,
             method: 'POST',
             contentType: 'application/json',
             // data: JSON.stringify({ ...user}),
-            // data: { password, email },
+            data: { amount, concept, date, id_user, type, token },
             success: function (response) {
                 console.log(response, "post en authducks");
                 // localStorage.setItem('userSession', JSON.stringify(response))
@@ -241,15 +235,15 @@ export const createBoudgetsActionn = (valor) => async (dispatch, getState) => {
             }
         });
 
-
+        console.log(dataBud)
 
 
 
         try {
             dispatch({
-                type: ORDER_BY_BOUDGETS_SHOW_SUCCESS,
+                type: BOUDGETS_CREATE_SUCCESS,
                 // payload: res.data[0]
-                payload: dataBud
+                payload: dataBud.data
             })
         } catch (error) {
 
@@ -260,3 +254,153 @@ export const createBoudgetsActionn = (valor) => async (dispatch, getState) => {
 
 
 }
+
+export const updateBoudgetsActionn = (valor) => async (dispatch, getState) => {
+    console.log(valor)
+
+    const amount = valor.amount;
+    const concept = valor.concept;
+    const dateElement = valor.date;
+    const type = valor.type;
+    const id_budget = valor.id_budget;
+    console.log(id_budget, "valor valor")
+
+
+    var event = new Date(dateElement);
+    let date = JSON.stringify(event)
+    date = date.slice(1, 11)
+    console.log(date)
+
+
+
+    if (localStorage.getItem('userSession')) {
+        const userSession = JSON.parse(localStorage.getItem('userSession')
+
+        )
+
+        const id_user = userSession.id_user;
+        const token = userSession.token;
+        // const url = `http://localhost:3001/api/budgets/${id_user}`
+
+        console.log(id_user, token)
+        // const dataBoudgets = await axios({
+        //     url: `http://localhost:3001/api/budgets/${id_user}?token=${token}`,
+        //     method: 'GET',
+        //     contentType: 'application/json',
+
+        //     success: function (response) {
+        //         // console.log(response);
+
+        //     }
+        // },
+        // );
+        // const dataBud = dataBoudgets.data;
+        console.log(concept, amount, date, id_user, type)
+        const dataBud = await axios({
+            url: `http://localhost:3001/api/budgets/${id_budget}?token=${token}`,
+            method: 'POST',
+            contentType: 'application/json',
+            // data: JSON.stringify({ ...user}),
+            data: { amount, concept, date, id_user, type, token },
+            success: function (response) {
+                console.log(response, "post en authducks");
+                // localStorage.setItem('userSession', JSON.stringify(response))
+
+            }
+        });
+
+        console.log(dataBud)
+
+
+
+        try {
+            dispatch({
+                type: BOUDGETS_UPDATE_SUCCESS,
+                // payload: res.data[0]
+                payload: dataBud.data
+            })
+        } catch (error) {
+
+        }
+    } else {
+        console.log("you arent login")
+    }
+
+
+
+
+}
+
+export const deleteBoudgetsActionn = (valor) => async (dispatch, getState) => {
+    console.log(valor.id_budget, "hola que tal")
+
+
+
+
+    if (localStorage.getItem('userSession')) {
+        const userSession = JSON.parse(localStorage.getItem('userSession')
+
+        )
+
+        const id_user = userSession.id_user;
+        const token = userSession.token;
+        // const url = `http://localhost:3001/api/budgets/${id_user}`
+
+        console.log(id_user, token)
+
+        const dataBud = await axios({
+            url: `http://localhost:3001/api/budgets/${valor.id_budget}?token=${token}`,
+            method: 'DELETE',
+            contentType: 'application/json',
+            // data: JSON.stringify({ ...user}),
+            // data: { amount, concept, date, id_user, type, token },
+            success: function (response) {
+                console.log(response, "post en authducks");
+                // localStorage.setItem('userSession', JSON.stringify(response))
+
+            }
+        });
+
+        console.log(dataBud)
+
+
+
+        try {
+            dispatch({
+                type: BOUDGETS_UPDATE_SUCCESS,
+                // payload: res.data[0]
+                payload: dataBud.data
+            })
+        } catch (error) {
+
+        }
+    } else {
+        console.log("you arent login")
+    }
+
+
+
+
+
+
+
+    // const n = await axios({
+    //     url: `http://localhost:3001/api/budgets/${data.id_budget}?token=${token}`,
+    //     method: 'DELETE',
+    //     contentType: 'application/json',
+    //     // data: JSON.stringify({ ...user}),
+    //     // data: { amount, concept, date, id_user, type },
+    //     success: function (response) {
+    //         console.log(response);
+    //         // localStorage.setItem('userSession', JSON.stringify(response))
+
+    //     }
+    // });
+
+}
+
+
+
+
+//createBoudgetsActionn
+
