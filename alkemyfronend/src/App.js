@@ -45,7 +45,7 @@ function App() {
 
         {
           log ? (
-            <div>
+            <div className='body'>
               <Auth />
             </div>
           ) : (

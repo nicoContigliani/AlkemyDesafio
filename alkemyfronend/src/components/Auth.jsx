@@ -4,12 +4,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import logo from './utils/siluet.png'
 
 import { useHistory } from "react-router-dom";
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAction, getUserActions } from '../features/Redux/authDucks';
-
 
 
 const schema = yup.object().shape({
@@ -134,7 +133,7 @@ const Auth = (props) => {
 
 
     return (
-        <div>
+        <div className='auth'>
 
 
             {/* <button onClick={() => { dispatch(x) }}>
@@ -146,13 +145,21 @@ const Auth = (props) => {
 
             {
                 logs ? (
-                    <div className="App">
-                        <h1 className="App">Login</h1>
+                    <div className="Container">
+                        <h1 className="Login">Login</h1>
                         {/* <form onSubmit={insertLog}> */}
-                        <form onSubmit={handleSubmit(insertLog)}>
 
+
+
+
+
+                        <form className='LoginF' onSubmit={handleSubmit(insertLog)}>
 
                             < div className="container">
+                                <div className="center">
+                                    <img src={logo} className='logoImagen' />
+
+                                </div>
                                 <div className="input-group">
 
                                     <input type="email" className="form-control" placeholder="email" type="email"
@@ -175,12 +182,16 @@ const Auth = (props) => {
 
                                 </div>
                                 <br />
-                                <div className="center">
-                                    <button type="submit" className="btn btn-info btn-sm ">Send</button>
-                                    <button className="btn btn-outline-dark btn-sm" onClick={e => setLogs(false)}>Register</button>
+                                <div class="App">
+                                    <div className="center">
+                                        <button type="submit" className="btn btn-info btn-sm ">Send</button>
+                                        <button className="btn btn-outline-dark btn-sm" onClick={e => setLogs(false)}>Register</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>
+                        <h2 className="LoginW"></h2>
 
                     </div>
 

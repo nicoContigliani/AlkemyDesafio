@@ -90,7 +90,7 @@ const Boudgets = (props) => {
 
 
     return (
-        <div>
+        <div >
 
 
             {/* <button onClick={() => { dispatch(c); }}>
