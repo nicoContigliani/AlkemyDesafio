@@ -2,7 +2,7 @@
 @media screen and (min-width: 320px) and (max-width: 786px) {
   .Login {
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.604);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(118,164,255,1) 50%, rgba(0,255,251,1) 100%);
   
     width: auto;
     height: 0px;
@@ -27,12 +27,13 @@
 .LoginW{
   
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.604);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(118,164,255,1) 50%, rgba(0,255,251,1) 100%);
     width: auto;
     height: 0px;
     border-right: 60px solid transparent;
     border-left: 60px solid transparent;
     border-bottom: 100px solid #1a4d79;
+    border-radius: 5%;
 }
 .logoImagen{
 
@@ -45,16 +46,21 @@
 
 
 .center{
-  
+    display:flex;
+  margin:auto;
 }
 .container{
-
+/* background-color: rgba(133, 181, 252, 0.083); */
+border-radius: 5%;
 }
 
 .auth{
    align-items: center;
   justify-content: center;
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(118,164,255,1) 50%, rgba(0,255,251,1) 100%);}
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(118,164,255,1) 50%, rgba(0,255,251,1) 100%);
+/* border-radius: 39%; */
+
+}
 .body{
   
      /* width: 250px;  */
@@ -62,6 +68,23 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(118,164,255,1) 50%, r
      border-radius: 5%;
 
     }
+
+.form-control{
+
+}
+.input-group{
+  display:flex;
+  margin-left: 11%;
+  width: 73%;
+}
+
+.reduction {
+  width: 0%;
+   font-size: calc(5px + 2vmin);
+}
+
+
+
 }
 
 

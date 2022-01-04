@@ -9,6 +9,7 @@ import logo from './utils/siluet.png'
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAction, getUserActions } from '../features/Redux/authDucks';
+import { motion } from "framer-motion"
 
 
 const schema = yup.object().shape({
@@ -146,6 +147,8 @@ const Auth = (props) => {
             {
                 logs ? (
                     <div className="Container">
+
+
                         <h1 className="Login">Login</h1>
                         {/* <form onSubmit={insertLog}> */}
 
@@ -157,7 +160,10 @@ const Auth = (props) => {
 
                             < div className="container">
                                 <div className="center">
-                                    <img src={logo} className='logoImagen' />
+                                    <motion.img src={logo} className='logoImagen'
+                                        whileHover={{ scale: 1.3 }}
+                                        whileTap={{ scale: 0.5 }}
+                                    />
 
                                 </div>
                                 <div className="input-group">
@@ -182,10 +188,17 @@ const Auth = (props) => {
 
                                 </div>
                                 <br />
-                                <div class="App">
+                                <div class="center">
                                     <div className="center">
-                                        <button type="submit" className="btn btn-info btn-sm ">Send</button>
-                                        <button className="btn btn-outline-dark btn-sm" onClick={e => setLogs(false)}>Register</button>
+                                        <motion.button type="submit" className="btn btn-info btn-sm "
+                                            whileHover={{ scale: 1.3 }}
+                                            whileTap={{ scale: 0.5 }}
+
+                                        >Send</motion.button>
+                                        <motion.button className="btn btn-outline-dark btn-sm" onClick={e => setLogs(false)}
+                                            whileHover={{ scale: 1.3 }}
+                                            whileTap={{ scale: 0.5 }}
+                                        >Register</motion.button>
                                     </div>
 
                                 </div>
@@ -198,13 +211,21 @@ const Auth = (props) => {
                 ) : (
 
                     <div className="App">
-                        <h1 className="App">Register</h1>
-                        <form onSubmit={insertRegister}>
+                        <h1 className="Login">Register</h1>
+
+                        <form className='LoginF' onSubmit={insertRegister}>
+
                             <div className="container">
+                                <div className="center">
+                                    <motion.img src={logo} className='logoImagen'
+                                        whileHover={{ scale: 1.3 }}
+                                        whileTap={{ scale: 0.5 }}
+                                    />
+
+                                </div>
                                 <div className="input-group">
 
                                     <input type="text" className="form-control" placeholder="email" type="email"
-                                        // name="email" onChange={onchangeUserDatass} />
                                         {...register("email")}
                                         required
                                     />
@@ -215,8 +236,6 @@ const Auth = (props) => {
                                 <div className="input-group">
 
                                     <input type="text" className="form-control" placeholder="fullname" type="text"
-                                        // name="password"
-                                        // // name="fullname" onChange={onchangeUserDatass} />
                                         {...register("fullname")}
                                         required
                                     />
@@ -228,8 +247,6 @@ const Auth = (props) => {
                                 <div className="input-group">
 
                                     <input type="password" className="form-control" placeholder="password" type="password"
-                                        // name="password"
-                                        // name="password" onChange={onchangeUserDatass} />
                                         {...register("password")}
                                         required
                                     />
@@ -239,12 +256,22 @@ const Auth = (props) => {
                                 </div>
                                 <br />
                                 <div className="center"><br />
-                                    <button type="submit" className="btn btn-primary btn-sm">Send</button>
-                                    <button className="btn btn-outline-dark btn-sm" onClick={e => setLogs(true)}>Login</button>
+                                    <div className="center">
+
+                                        <motion.button type="submit" className="btn btn-info btn-sm"
+                                            whileHover={{ scale: 1.3 }}
+                                            whileTap={{ scale: 0.5 }}
+                                        >Send</motion.button>
+                                        <motion.button className="btn btn-outline-dark btn-sm" onClick={e => setLogs(true)}
+                                            whileHover={{ scale: 1.3 }}
+                                            whileTap={{ scale: 0.5 }}
+                                        >Login</motion.button>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>
-
+                        <h2 className="LoginW"></h2>
                     </div>
                 )
 

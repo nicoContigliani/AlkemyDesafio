@@ -120,8 +120,14 @@ const FormEdit = (props) => {
 
 
     return (
-        <div>
+        <div className='container'>
+            <h1>New Element</h1>
+
             <form onSubmit={handleSubmit(update)}>
+
+
+
+
 
 
                 <div class="form-row">
@@ -129,18 +135,18 @@ const FormEdit = (props) => {
                         <label htmlFor="" className='leterletle '{...register("id_budget")} > Registro {dataEdit.id_budget}</label>
                     </div>
                     <div class="col-sm">
-                        <input {...register("concept")} placeholder="concept" type="text" required defaultValue={dataEdit.concept} />
+                        <input {...register("concept")} placeholder="concept" class="form-control" type="text" required defaultValue={dataEdit.concept} />
                         <p>{errors.concept?.message}</p>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-sm">
-                        <input {...register("amount")} placeholder="amount" type="number" required defaultValue={dataEdit.amount} />
+                        <input {...register("amount")} placeholder="amount" class="form-control" type="number" required defaultValue={dataEdit.amount} />
                         <p>{errors.amount?.message}</p>
                     </div>
                     <div class="col-sm">
 
-                        <input {...register("date")} placeholder="date" type="date" required />
+                        <input {...register("date")} placeholder="date" type="date" class="form-control" required />
                         <p>{errors.date?.message}</p>
                         <span>
                             <label htmlFor="" className='leterletle'>{props.value.date}</label>
@@ -148,9 +154,7 @@ const FormEdit = (props) => {
                     </div>
                 </div>
 
-
-
-                <select name="type" {...register("type")} placeholder="type" class="metro-input mt-2" required defaultValue={dataEdit.type} disabled >
+                <select name="type" {...register("type")} placeholder="type" class="form-control" required defaultValue={dataEdit.type} disabled >
                     {dataEdit.type}
                     <option name="type" value="entry">entry</option>
                     <option name="type" value="egress">egress</option>
@@ -158,13 +162,12 @@ const FormEdit = (props) => {
                 </select>
                 <p>{errors.type?.message}</p>
 
-
                 <div class="form-row">
-                    <div class="col">
-                        <button className='button primary outline mt-2 ml-2' type="submit">Update</button>
+                    <div class="col-sm">
+                        <button className='button primary outline mt ml-2' type="submit">Update</button>
                     </div>
-                    <div class="col">
-                        <button name="id_bud" type="submit" onClick={() => deletes(dataEdit.id_budget)} className="btn btn-outline-danger mt-2 ml-2 ">Delete</button>
+                    <div class="col-sm">
+                        <button name="id_bud" type="submit" onClick={() => deletes(dataEdit.id_budget)} className="btn btn-outline-danger mt ml-2 ">Delete</button>
 
                     </div>
                 </div>

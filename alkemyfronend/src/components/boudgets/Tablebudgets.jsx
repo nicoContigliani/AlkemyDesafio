@@ -92,63 +92,67 @@ const Tablebudgets = (props) => {
                 <div class="btn-group">
 
                 </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-
-
-                    <button className='btn btn-outline-info btn-sm mb-1' onClick={changeDataOrigin}>
-                        Element
-                    </button>
-                    <button type="button" className="btn btn-outline-info btn-sm mb-1" onClick={orderBy}>
-                        Element Order
-                    </button>
-                </div>
                 {
                     edit ? (
-                        <table className="table table-border cell-border subcompact striped">
-                            <thead>
-                                <tr>
-                                    <th>concept</th>
-                                    <th>amount</th>
-                                    <th>data</th>
-                                    <th>type</th>
-                                    <th>action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
+                        <div className="container ">
 
-                                    dataTable
-                                        .slice(0, 10)
-                                        .map((item, index) =>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
 
+                                <button className='btn btn-outline-info btn-sm mb-1' onClick={changeDataOrigin}>
+                                    ALL
+                                </button>
+                                <button type="button" className="btn btn-outline-info btn-sm mb-1" onClick={orderBy}>
+                                    TYPE
+                                </button>
+                            </div>
 
-                                            <tr key={index}>
+                            <table className="table table-border cell-border subcompact striped">
+                                <thead>
+                                    <tr>
+                                        <th>concept</th>
+                                        <th>amount</th>
+                                        <th>data</th>
+                                        <th>type</th>
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
 
-
-
-                                                <td>{item.concept}</td>
-                                                <td>{item.amount}</td>
-                                                <td>{item.date}</td>
-                                                <td>{item.type}</td>
-
-
-                                                <td className="center">
-
-                                                    <button className="btn-primary btn-sm"
-                                                        onClick={(() => EditBudgets(item.id_budget))}
-                                                    >Edit</button>
-
-
-                                                </td>
-                                            </tr>
-                                        )
-                                }
+                                        dataTable
+                                            .slice(0, 10)
+                                            .map((item, index) =>
 
 
 
-                            </tbody>
-                        </table>
+                                                <tr key={index}>
+
+
+
+                                                    <td>{item.concept}</td>
+                                                    <td>{item.amount}</td>
+                                                    <td>{item.date}</td>
+                                                    <td>{item.type}</td>
+
+
+                                                    <td className="center">
+
+                                                        <button className="btn-primary btn-sm"
+                                                            onClick={(() => EditBudgets(item.id_budget))}
+                                                        >Edit</button>
+
+
+                                                    </td>
+                                                </tr>
+                                            )
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
                     ) :
                         (
                             <Form value={editID} />

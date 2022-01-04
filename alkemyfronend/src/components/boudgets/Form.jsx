@@ -100,8 +100,8 @@ const Form = (props) => {
 
     let history = useHistory();
     return (
-        <div className='forms'>
-            <h1>Form</h1>
+        <div className='center'>
+
 
             {
                 edit ? (
@@ -110,25 +110,31 @@ const Form = (props) => {
                         <FormEdit value={props.value} />
                     </div>
                 ) : (
-                    <form onSubmit={handleSubmit(create)}>
-                        <input {...register("concept")} placeholder="concept" type="text" required />
-                        <p>{errors.concept?.message}</p>
-                        <input {...register("amount")} placeholder="amount" type="number" required />
-                        <p>{errors.amount?.message}</p>
-                        <input {...register("date")} placeholder="date" type="date" required />
-                        <p>{errors.date?.message}</p>
-
-                        <select name="type" {...register("type")} placeholder="type" class="metro-input mt-2" required>
-                            <option placeholder="type"> Type</option>
-                            <option name="type" value="entry">Entry</option>
-                            <option name="type" value="egress">Egress</option>
-
-                        </select>
-                        <p>{errors.type?.message}</p>
 
 
-                        <button type="submit" className='btn btn-info'>Send</button>
-                    </form>
+                    <div>
+                        <h1>New Element</h1>
+
+                        <form onSubmit={handleSubmit(create)}>
+                            <input {...register("concept")} placeholder="concept" type="text" required />
+                            <p>{errors.concept?.message}</p>
+                            <input {...register("amount")} placeholder="amount" type="number" required />
+                            <p>{errors.amount?.message}</p>
+                            <input {...register("date")} placeholder="date" type="date" required />
+                            <p>{errors.date?.message}</p>
+
+                            <select name="type" {...register("type")} placeholder="type" class="metro-input mt-2" required>
+                                <option placeholder="type"> Type</option>
+                                <option name="type" value="entry">Entry</option>
+                                <option name="type" value="egress">Egress</option>
+
+                            </select>
+                            <p>{errors.type?.message}</p>
+
+
+                            <button type="submit" className='btn btn-info'>Send</button>
+                        </form>
+                    </div>
                 )
             }
 
