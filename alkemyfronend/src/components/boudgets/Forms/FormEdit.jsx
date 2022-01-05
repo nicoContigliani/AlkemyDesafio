@@ -124,70 +124,72 @@ const FormEdit = (props) => {
 
     return (
         <div className='container'>
-
-            <h4>New Element</h4>
-
-            <form onSubmit={handleSubmit(update)}>
+            <div className='container'>
 
 
+                <h4>New Element</h4>
+
+                <form onSubmit={handleSubmit(update)}>
 
 
 
 
-                <div class="form-row">
-                    <div class="col-sm">
-                        <label htmlFor="" className='leterletle '{...register("id_budget")} > Registro {dataEdit.id_budget}</label>
+
+
+                    <div class="form-row">
+                        <div class="col-sm">
+                            <label htmlFor="" className='leterletle '{...register("id_budget")} > Registro {dataEdit.id_budget}</label>
+                        </div>
+                        <div class="col-sm">
+                            <input {...register("concept")} placeholder="concept" class="form-control" type="text" required defaultValue={dataEdit.concept} />
+                            <p>{errors.concept?.message}</p>
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <input {...register("concept")} placeholder="concept" class="form-control" type="text" required defaultValue={dataEdit.concept} />
-                        <p>{errors.concept?.message}</p>
+                    <div class="form-row">
+                        <div class="col-sm">
+                            <input {...register("amount")} placeholder="amount" class="form-control" type="number" required defaultValue={dataEdit.amount} />
+                            <p>{errors.amount?.message}</p>
+                        </div>
+                        <div class="col-sm">
+
+                            <input {...register("date")} placeholder="date" type="date" class="form-control" required />
+                            <p>{errors.date?.message}</p>
+                            <span>
+                                <label htmlFor="" className='leterletle'>{props.value.date}</label>
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-sm">
-                        <input {...register("amount")} placeholder="amount" class="form-control" type="number" required defaultValue={dataEdit.amount} />
-                        <p>{errors.amount?.message}</p>
+
+                    <select name="type" {...register("type")} placeholder="type" class="form-control" required defaultValue={dataEdit.type} disabled >
+                        {dataEdit.type}
+                        <option name="type" value="entry">entry</option>
+                        <option name="type" value="egress">egress</option>
+
+                    </select>
+                    <p>{errors.type?.message}</p>
+
+                    <div class="form-row">
+                        <div class="col-sm">
+                            <motion.button className='button primary outline mt ml-2' type="submit"
+                                whileHover={{ scale: 1.3 }}
+                                whileTap={{ scale: 0.5 }}
+
+
+                            >Update</motion.button>
+                        </div>
+                        <div class="col-sm">
+                            <motion.button name="id_bud" type="submit" onClick={() => deletes(dataEdit.id_budget)} className="btn btn-outline-danger mt ml-2 "
+                                whileHover={{ scale: 1.3 }}
+                                whileTap={{ scale: 0.5 }}
+
+                            >Delete</motion.button>
+
+                        </div>
                     </div>
-                    <div class="col-sm">
+                </form>
+                {/* <button className="button button-clear" onClick={() => history.push('/')}>button</button> */}
 
-                        <input {...register("date")} placeholder="date" type="date" class="form-control" required />
-                        <p>{errors.date?.message}</p>
-                        <span>
-                            <label htmlFor="" className='leterletle'>{props.value.date}</label>
-                        </span>
-                    </div>
-                </div>
-
-                <select name="type" {...register("type")} placeholder="type" class="form-control" required defaultValue={dataEdit.type} disabled >
-                    {dataEdit.type}
-                    <option name="type" value="entry">entry</option>
-                    <option name="type" value="egress">egress</option>
-
-                </select>
-                <p>{errors.type?.message}</p>
-
-                <div class="form-row">
-                    <div class="col-sm">
-                        <motion.button className='button primary outline mt ml-2' type="submit"
-                            whileHover={{ scale: 1.3 }}
-                            whileTap={{ scale: 0.5 }}
-
-
-                        >Update</motion.button>
-                    </div>
-                    <div class="col-sm">
-                        <motion.button name="id_bud" type="submit" onClick={() => deletes(dataEdit.id_budget)} className="btn btn-outline-danger mt ml-2 "
-                            whileHover={{ scale: 1.3 }}
-                            whileTap={{ scale: 0.5 }}
-
-                        >Delete</motion.button>
-
-                    </div>
-                </div>
-            </form>
-            {/* <button className="button button-clear" onClick={() => history.push('/')}>button</button> */}
-
-
+            </div>
 
         </div>
     )

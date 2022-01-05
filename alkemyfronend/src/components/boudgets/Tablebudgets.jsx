@@ -116,6 +116,7 @@ const Tablebudgets = (props) => {
                             <div className='table-center'>
 
 
+
                                 <table className="table table-border cell-border subcompact striped">
                                     <thead>
                                         <tr>
