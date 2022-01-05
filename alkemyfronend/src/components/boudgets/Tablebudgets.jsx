@@ -7,6 +7,7 @@ import axios from 'axios';
 import Createbudget from './Createbudget'
 import Form from './Form';
 import { set } from 'react-hook-form';
+import { motion } from "framer-motion"
 
 
 
@@ -99,59 +100,70 @@ const Tablebudgets = (props) => {
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
 
-                                <button className='btn btn-outline-info btn-sm mb-1' onClick={changeDataOrigin}>
+                                <motion.button className='btn btn-outline-info btn-sm mb-1 ' onClick={changeDataOrigin}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.5 }}
+                                >
                                     ALL
-                                </button>
-                                <button type="button" className="btn btn-outline-info btn-sm mb-1" onClick={orderBy}>
+                                </motion.button>
+                                <motion.button type="button" className="btn btn-outline-info btn-sm mb-1" onClick={orderBy}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.5 }}
+                                >
                                     TYPE
-                                </button>
+                                </motion.button>
                             </div>
-
-                            <table className="table table-border cell-border subcompact striped">
-                                <thead>
-                                    <tr>
-                                        <th>concept</th>
-                                        <th>amount</th>
-                                        <th>data</th>
-                                        <th>type</th>
-                                        <th>action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-
-                                        dataTable
-                                            .slice(0, 10)
-                                            .map((item, index) =>
+                            <div className='table-center'>
 
 
+                                <table className="table table-border cell-border subcompact striped">
+                                    <thead>
+                                        <tr>
+                                            <th>concept</th>
+                                            <th>amount</th>
+                                            <th>data</th>
+                                            <th>type</th>
+                                            <th>action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
 
-                                                <tr key={index}>
+                                            dataTable
+                                                .slice(0, 10)
+                                                .map((item, index) =>
 
 
 
-                                                    <td>{item.concept}</td>
-                                                    <td>{item.amount}</td>
-                                                    <td>{item.date}</td>
-                                                    <td>{item.type}</td>
-
-
-                                                    <td className="center">
-
-                                                        <button className="btn-primary btn-sm"
-                                                            onClick={(() => EditBudgets(item.id_budget))}
-                                                        >Edit</button>
-
-
-                                                    </td>
-                                                </tr>
-                                            )
-                                    }
+                                                    <tr key={index}>
 
 
 
-                                </tbody>
-                            </table>
+                                                        <td>{item.concept}</td>
+                                                        <td>{item.amount}</td>
+                                                        <td>{item.date}</td>
+                                                        <td>{item.type}</td>
+
+
+                                                        <td className="center">
+
+                                                            <motion.button className="btn-primary "
+                                                                whileHover={{ scale: 1.1 }}
+                                                                whileTap={{ scale: 0.9 }}
+                                                                onClick={(() => EditBudgets(item.id_budget))}
+                                                            >Edit</motion.button>
+
+
+                                                        </td>
+                                                    </tr>
+                                                )
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     ) :
                         (

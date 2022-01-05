@@ -40,7 +40,7 @@ function App() {
 
 
   return (
-    <div >
+    <div className='body' >
       <Provider store={store}>
 
         {
@@ -49,7 +49,7 @@ function App() {
               <Auth />
             </div>
           ) : (
-            <div>
+            <div className='bodyS'>
 
 
 

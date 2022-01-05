@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 // import Chart from 'chart.js/auto';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserActionn, showBoudgetsActionn } from '../../features/Redux/boudgetsDucks'
+import coint from '../utils/cointt.svg'
 
 
+import { motion } from "framer-motion";
 
 
 
@@ -119,20 +120,30 @@ const Resulting = (props) => {
             {
                 show ? (
 
-                    <div className="center">
-                        Income: {resultante.totall} -  Egreess:{resultante.total}
-                        <hr />
-                        Resultante:{resultante.r}
+                    <div className="container">
+
+
+                        <div className="result-center">
+                            <img src={coint} className='coint' />
+
+                            <div className="container">
+                                <strong>
+                                    Income: {resultante.totall} - Egreess:{resultante.total}
+                                    <hr />
+                                    Result:{resultante.r}
+                                </strong>
+
+
+                            </div>
+
+
+                        </div>
                     </div>
                 ) : ("")
             }
-
-
-
-            {/* {
-                budgetsArray !== undefined ? (`ya anda ${budgetsArray}`) : (`no anda ${budgetsArray}`)
-            } */}
             <button onClick={resultant}></button>
+
+
         </div>
     )
 }

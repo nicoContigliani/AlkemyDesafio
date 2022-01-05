@@ -11,8 +11,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { array } from 'yup/lib/locale';
 import FormEdit from './Forms/FormEdit';
 
+import { motion } from "framer-motion"
 
-
+import Resulting from './Resulting';
 
 const schema = yup.object().shape({
 
@@ -112,10 +113,11 @@ const Form = (props) => {
                 ) : (
 
 
-                    <div>
-                        <h1>New Element</h1>
+                    <div className='container'>
+                        <Resulting />
+                        <h4>New Element</h4>
 
-                        <form onSubmit={handleSubmit(create)}>
+                        <form className='forms' onSubmit={handleSubmit(create)}>
                             <input {...register("concept")} placeholder="concept" type="text" required />
                             <p>{errors.concept?.message}</p>
                             <input {...register("amount")} placeholder="amount" type="number" required />
@@ -132,7 +134,10 @@ const Form = (props) => {
                             <p>{errors.type?.message}</p>
 
 
-                            <button type="submit" className='btn btn-info'>Send</button>
+                            <motion.button type="submit" className='btn btn-info'
+                                whileHover={{ scale: 1.3 }}
+                                whileTap={{ scale: 0.5 }}
+                            >Send</motion.button>
                         </form>
                     </div>
                 )

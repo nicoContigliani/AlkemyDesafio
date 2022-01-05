@@ -10,6 +10,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { array } from 'yup/lib/locale';
 
 
+import { motion } from "framer-motion"
+// whileHover = {{ scale: 1.3 }}
+// whileTap = {{ scale: 0.5 }}
 
 
 
@@ -121,7 +124,8 @@ const FormEdit = (props) => {
 
     return (
         <div className='container'>
-            <h1>New Element</h1>
+
+            <h4>New Element</h4>
 
             <form onSubmit={handleSubmit(update)}>
 
@@ -164,10 +168,19 @@ const FormEdit = (props) => {
 
                 <div class="form-row">
                     <div class="col-sm">
-                        <button className='button primary outline mt ml-2' type="submit">Update</button>
+                        <motion.button className='button primary outline mt ml-2' type="submit"
+                            whileHover={{ scale: 1.3 }}
+                            whileTap={{ scale: 0.5 }}
+
+
+                        >Update</motion.button>
                     </div>
                     <div class="col-sm">
-                        <button name="id_bud" type="submit" onClick={() => deletes(dataEdit.id_budget)} className="btn btn-outline-danger mt ml-2 ">Delete</button>
+                        <motion.button name="id_bud" type="submit" onClick={() => deletes(dataEdit.id_budget)} className="btn btn-outline-danger mt ml-2 "
+                            whileHover={{ scale: 1.3 }}
+                            whileTap={{ scale: 0.5 }}
+
+                        >Delete</motion.button>
 
                     </div>
                 </div>
